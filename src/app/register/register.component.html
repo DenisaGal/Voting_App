@@ -1,2 +1,19 @@
 
-<p>register works!</p>
+<div id="body" >
+    <label for="firstname">First name:</label><br>
+    <input type="text" id="firstname" name="firstname"><br>
+    <label for="lastname">Last name:</label><br>
+    <input type="text" id="lastname" name="lastname"><br><br>
+
+    <label for="serie">Identity card series and number:</label><br>
+    <input type="text" id="serie" name="serie"><br><br>
+
+    <label>Gender:</label><br>
+    <input type="radio" id="male" name="gender" value="male">
+    <label for="male">Male</label><br>
+    <input type="radio" id="female" name="gender" value="female">
+    <label for="female">Female</label><br>
+
+    <button (click)="register()"> Register </button><br>
+    <a href="./">Already have an account?</a><br>
+
