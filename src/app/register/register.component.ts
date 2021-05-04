@@ -12,7 +12,8 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  register(): void{
-    alert("Register woohoo!");
+  register(): void{  //for now verific ca merge butonul si ia datele din field
+    let name = (<HTMLInputElement>document.getElementById("firstname")).value;
+    alert(name);
   }
 }
