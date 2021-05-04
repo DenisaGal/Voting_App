@@ -1,13 +1,12 @@
 <div id="body" >
-  <label for="firstname">First name:</label><br>
-  <input type="text" id="firstname" name="firstname"><br>
-  <label for="lastname">Last name:</label><br>
-  <input type="text" id="lastname" name="lastname"><br><br>
 
   <label for="cnp">CNP:</label><br>
-  <input type="text" id="cnp" name="cnp"><br><br>
+  <input type="text" id="cnp" name="cnp" placeholder="Personal identification number"><br><br>
 
-  <button (click)="login()"> Log In </button><br>
+  <label for="password">Password</label><br>
+  <input id="password" type="password" name="password" placeholder="Enter your Password" required><br><br>
+
+  <button (click)="login()"> Log In </button><br><br>
 
   <a routerLink="/register">Haven't registered yet?</a><br>
 
