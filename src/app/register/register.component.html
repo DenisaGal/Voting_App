@@ -17,6 +17,10 @@
     <input type="radio" id="female" name="gender" value="female">
     <label for="female">Female</label><br>
 
-    <button (click)="register()"> Register </button><br>
-    <a href="./">Already have an account?</a><br>
+    <p>After completing your profile and registering, future logins will require your CNP!</p> <!-- sau facem cu cheie unica idk -->
 
+    <button (click)="register()"> Register </button><br>
+
+    <a routerLink="/login">Already have an account?</a><br>
+
+</div>
