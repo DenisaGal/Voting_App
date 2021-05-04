@@ -17,5 +17,7 @@ export class RegisterComponent implements OnInit {
   register(): void{  //for now verific ca merge butonul si ia datele din field
     let name = (<HTMLInputElement>document.getElementById("firstname")).value;
     alert(name);
+
+    //have to check AGE!!, maybe address dar nu cred ca reusim
   }
 }
