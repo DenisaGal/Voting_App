@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-register',
@@ -7,12 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  constructor(public router: Router) { }
 
   ngOnInit(): void {
   }
 
-  register(): void{
-    alert("Register woohoo!");
+  register(): void{  //for now verific ca merge butonul si ia datele din field
+    let name = (<HTMLInputElement>document.getElementById("firstname")).value;
+    alert(name);
   }
 }

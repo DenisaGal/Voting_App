@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { RegisterComponent } from './register/register.component';
 import { MainPageComponent } from './main-page/main-page.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopBarComponent,
     RegisterComponent,
-    MainPageComponent
+    MainPageComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
