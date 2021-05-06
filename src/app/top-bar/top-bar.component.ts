@@ -37,7 +37,7 @@ export class TopBarComponent implements OnInit {
      return TopBarComponent.isSignedIn;
   }
 
-  logout(): void {
+  public logout(): void {
     this.auth.signOut().then(() => {
           TopBarComponent.isSignedIn = false;
           this.router.navigate(['./']);

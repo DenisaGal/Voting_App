@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
     this.auth.signInWithEmailAndPassword(email, password)
        .then((user) => {
-              //TopBarComponent.isSignedIn = true;
+              TopBarComponent.isSignedIn = true;
               this.router.navigate(['./']);
         })
         .catch((error) => {
