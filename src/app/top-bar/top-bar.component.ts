@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { LoginComponent } from '../login/login.component';
 import { AngularFireAuth } from "@angular/fire/auth";
 import {ApplicationRef } from '@angular/core';
 
@@ -37,7 +36,7 @@ export class TopBarComponent implements OnInit {
      return TopBarComponent.isSignedIn;
   }
 
-  logout(): void {
+  public logout(): void {
     this.auth.signOut().then(() => {
           TopBarComponent.isSignedIn = false;
           this.router.navigate(['./']);
