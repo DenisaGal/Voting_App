@@ -9,10 +9,18 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class UserProfileComponent implements OnInit {
 
+	selectedGender: string = '';
+	genders: any = ['Male', 'Female'];
+
   constructor(private db: AngularFirestore) { }
 
   ngOnInit(): void {
   }
+
+
+	radioChangeHandler (event: any){
+		this.selectedGender = event.target.value;
+	}
 
 	//basically dupa ce si fac cont, aici trebuie sa iti completezi profilul si abia dupa e ok ca user so now we have to see abt database cu user info
 
@@ -25,17 +33,17 @@ export class UserProfileComponent implements OnInit {
 		let iCity = (<HTMLInputElement>document.getElementById("city")).value;
 		let iStreet = (<HTMLInputElement>document.getElementById("street")).value;
 		let iNumber = (<HTMLInputElement>document.getElementById("number")).value;
-		//let iGender = !!!!!!!
+		let iGender = this.selectedGender;
 
 		this.db.collection("Users").doc(iCNP).set({
 		    CID: iCID,
 		    First_Name: iFirst_Name,
 		    Last_Name: iLast_Name,
-		    Email: "",
+		    Email_Address: "",
 		    City: iCity,
 		    Street: iStreet,
 		    Number: iNumber,
-		    Gender: ""
+		    Gender: iGender
 		})
 		.then(() => {
     console.log("Document successfully written!");

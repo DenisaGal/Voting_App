@@ -25,10 +25,16 @@
 
   <label>Gender:</label><br>
 
-  <input type="radio" id="male" name="gender" value="male">
+  <div *ngFor="let gender of genders">
+    <input type="radio" name="selected_gender" value="{{gender}}" (change)="radioChangeHandler($event)">
+    <i>{{gender}}</i><br>
+    
+  </div>
+  <br>
+  <!-- <input type="radio" id="male" name="gender" value="male">
   <label for="male">Male</label><br>
   <input type="radio" id="female" name="gender" value="female">
-  <label for="female">Female</label><br><br>
+  <label for="female">Female</label><br><br> -->
 
   <button (click)="add_data()"> Save </button><br><br>
 
