@@ -1,4 +1,4 @@
-<div id="body">
+<div id="body" *ngIf="!isProfileComplete">
   <p>Complete your profile:</p>
 
   <p>Name:</p>
@@ -34,5 +34,15 @@
   <!-- Might be a bug where gender options only appear after save is pressed once T_T -->
 
   <button (click)="add_data()"> Save </button><br><br>
+
+</div>
+
+<!-- Display user data from db -->
+<div id="body" *ngIf="isProfileComplete">
+  <p>Your profile's info:</p>
+
+  <p>Your name:</p>
+
+  <button> Edit profile </button><br><br> <!-- No functionality yet -->
 
 </div>

@@ -13,7 +13,9 @@ import * as CryptoJS from 'crypto-js';
 export class UserProfileComponent implements OnInit {
 
 	public static emailAddress: string = '';
+	isProfileComplete: boolean = false;
 
+	//we need a more secure place for encPassword
 	encPassword: String = 'unicorn';
 
 	selectedGender: string = '';
@@ -34,7 +36,8 @@ export class UserProfileComponent implements OnInit {
   	}
 
 	//basically dupa ce si fac cont, aici trebuie sa iti completezi profilul si abia dupa e ok ca user so now we have to see abt database cu user info
-	//!!add data validation!! (cnp sa fie 13 cifre etc)
+
+	//!!add data validation rules!! (cnp sa fie 13 cifre etc)
 
 	add_data(): void {
 		let iCNP = (<HTMLInputElement>document.getElementById("cnp")).value;
@@ -58,7 +61,8 @@ export class UserProfileComponent implements OnInit {
 		let eNumber = CryptoJS.AES.encrypt(iNumber.trim(), this.encPassword.trim()).toString();
 		let eGender = CryptoJS.AES.encrypt(iGender.trim(), this.encPassword.trim()).toString();
 		let eEmailAddress = CryptoJS.AES.encrypt(iEmailAddress.trim(), this.encPassword.trim()).toString();
-		
+		//to decript use CryptoJS.AES.decrypt(encryptText.trim(), this.decPassword.trim()).toString(CryptoJS.enc.Utf8);
+
 		this.db.collection("Users").doc(eCNP).set({
 		    CID: eCID,
 		    First_Name: eFirst_Name,
@@ -71,7 +75,8 @@ export class UserProfileComponent implements OnInit {
 		    Admin: false
 		})
 		.then(() => {
-    console.log("Document successfully written!");
+			this.isProfileComplete = true;
+    		console.log("Document successfully written!");
 		})
 		.catch((error) => {
 		    console.error("Error writing document: ", error);
