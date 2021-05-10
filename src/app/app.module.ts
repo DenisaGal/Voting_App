@@ -12,6 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { LoginComponent } from './login/login.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     RegisterComponent,
     MainPageComponent,
     LoginComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    AdminPageComponent
   ],
   imports: [
     BrowserModule,
