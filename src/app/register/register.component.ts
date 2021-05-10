@@ -33,6 +33,7 @@ export class RegisterComponent implements OnInit {
                   //send email address to user profile component to add to user database
                   UserProfileComponent.emailAddress = email;
 
+                //send account verification email
                   var current = this.auth.currentUser;
                   current.then((currentuser) => {
                           if(currentuser)
@@ -54,7 +55,6 @@ export class RegisterComponent implements OnInit {
    }
 
     //have to check AGE!!, maybe address dar nu cred ca reusim
-    //putem trimite e-mail de confirmare
     //trebuie sa vedem cum encriptam datele
     //UPDATE vezi user profile, acolo sunt datele
 }
