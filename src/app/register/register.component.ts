@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { LoginComponent } from '../login/login.component';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { TopBarComponent } from "../top-bar/top-bar.component";
+import { UserProfileComponent } from "../user-profile/user-profile.component";
 
 @Component({
   selector: 'app-register',
@@ -30,7 +31,9 @@ export class RegisterComponent implements OnInit {
      else{
       this.auth.createUserWithEmailAndPassword(email, password)
                 .then((user) => {
-                //fireauth logs the user in automatically on register, so I'm logging him out lol
+                  //send email address to user profile component to add to user database
+                  UserProfileComponent.emailAddress = email;
+                  //fireauth logs the user in automatically on register, so I'm logging him out lol
                   this.auth.signOut().then(() => {
                             TopBarComponent.isSignedIn = false;
                           }).catch((error) => {

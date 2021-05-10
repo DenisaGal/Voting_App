@@ -15,26 +15,22 @@
 
   <p>Address:</p> <!-- god i cant wait to css this -->
   <label for="county">County</label>
-  <input type="text" id="county" name="county">
+  <input type="text" id="county" name="county" required>
   <label for="city">City</label>
-  <input type="text" id="city" name="city">
+  <input type="text" id="city" name="city" required>
   <label for="street">Street</label>
-  <input type="text" id="street" name="street">
+  <input type="text" id="street" name="street" required>
   <label for="number">Number</label>
-  <input type="number" id="number" name="number"><br><br>
+  <input type="number" id="number" name="number" required><br><br>
 
   <label>Gender:</label><br>
 
   <div *ngFor="let gender of genders">
     <input type="radio" name="selected_gender" value="{{gender}}" (change)="radioChangeHandler($event)">
-    <i>{{gender}}</i><br>
-    
+    <i> {{gender}} </i><br>  
   </div>
+  
   <br>
-  <!-- <input type="radio" id="male" name="gender" value="male">
-  <label for="male">Male</label><br>
-  <input type="radio" id="female" name="gender" value="female">
-  <label for="female">Female</label><br><br> -->
 
   <button (click)="add_data()"> Save </button><br><br>
 
