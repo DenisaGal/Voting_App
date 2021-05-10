@@ -36,6 +36,13 @@ export class TopBarComponent implements OnInit {
      return TopBarComponent.isSignedIn;
   }
 
+  isAdmin(): boolean {
+     //trebuie sa aiba fiecare user o coloana is Admin in tabel cred, ca sa facem aici conditia reala, nu admin@admin XD
+
+     return TopBarComponent.isSignedIn;
+
+  }
+
   public logout(): void {
     this.auth.signOut().then(() => {
           TopBarComponent.isSignedIn = false;
