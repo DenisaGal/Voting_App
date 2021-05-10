@@ -3,7 +3,7 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from "@angular/router";
-import {ApplicationRef } from '@angular/core';
+import * as CryptoJS from 'crypto-js';  
 
 @Component({
   selector: 'app-user-profile',
@@ -13,6 +13,8 @@ import {ApplicationRef } from '@angular/core';
 export class UserProfileComponent implements OnInit {
 
 	public static emailAddress: string = '';
+
+	encPassword: String = 'unicorn';
 
 	selectedGender: string = '';
 	genders: any = ['Male', 'Female'];
@@ -32,6 +34,7 @@ export class UserProfileComponent implements OnInit {
   	}
 
 	//basically dupa ce si fac cont, aici trebuie sa iti completezi profilul si abia dupa e ok ca user so now we have to see abt database cu user info
+	//!!add data validation!! (cnp sa fie 13 cifre etc)
 
 	add_data(): void {
 		let iCNP = (<HTMLInputElement>document.getElementById("cnp")).value;
@@ -44,16 +47,28 @@ export class UserProfileComponent implements OnInit {
 		let iNumber = (<HTMLInputElement>document.getElementById("number")).value;
 		let iGender = this.selectedGender;
 		let iEmailAddress = this.getEmailAddress();
+
+		let eCNP = CryptoJS.AES.encrypt(iCNP.trim(), this.encPassword.trim()).toString();
+		let eCID = CryptoJS.AES.encrypt(iCID.trim(), this.encPassword.trim()).toString();  
+		let eFirst_Name = CryptoJS.AES.encrypt(iFirst_Name.trim(), this.encPassword.trim()).toString();
+		let eLast_Name = CryptoJS.AES.encrypt(iLast_Name.trim(), this.encPassword.trim()).toString();
+		let eCounty = CryptoJS.AES.encrypt(iCounty.trim(), this.encPassword.trim()).toString();
+		let eCity = CryptoJS.AES.encrypt(iCity.trim(), this.encPassword.trim()).toString();
+		let eStreet = CryptoJS.AES.encrypt(iStreet.trim(), this.encPassword.trim()).toString();
+		let eNumber = CryptoJS.AES.encrypt(iNumber.trim(), this.encPassword.trim()).toString();
+		let eGender = CryptoJS.AES.encrypt(iGender.trim(), this.encPassword.trim()).toString();
+		let eEmailAddress = CryptoJS.AES.encrypt(iEmailAddress.trim(), this.encPassword.trim()).toString();
 		
-		this.db.collection("Users").doc(iCNP).set({
-		    CID: iCID,
-		    First_Name: iFirst_Name,
-		    Last_Name: iLast_Name,
-		    Email_Address: iEmailAddress,
-		    City: iCity,
-		    Street: iStreet,
-		    Number: iNumber,
-		    Gender: iGender
+		this.db.collection("Users").doc(eCNP).set({
+		    CID: eCID,
+		    First_Name: eFirst_Name,
+		    Last_Name: eLast_Name,
+		    Email_Address: eEmailAddress,
+		    City: eCity,
+		    Street: eStreet,
+		    Number: eNumber,
+		    Gender: eGender,
+		    Admin: false
 		})
 		.then(() => {
     console.log("Document successfully written!");
