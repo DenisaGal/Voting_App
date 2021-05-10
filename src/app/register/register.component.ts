@@ -18,7 +18,6 @@ export class RegisterComponent implements OnInit {
 
   register(): void{
 
-    //gotta make a profile completion page and move this complex form there, while register is only  mail and pwd
      let email = (<HTMLInputElement>document.getElementById("email")).value;
      let password = (<HTMLInputElement>document.getElementById("password")).value;
      let confirm = (<HTMLInputElement>document.getElementById("confirm")).value;
@@ -30,6 +29,12 @@ export class RegisterComponent implements OnInit {
      else{
       this.auth.createUserWithEmailAndPassword(email, password)
                 .then((user) => {
+
+                var current = this.auth.currentUser;
+                current.then((currentuser) => {
+                        if(currentuser)
+                              currentuser.sendEmailVerification();});
+
                 //fireauth logs the user in automatically on register, so I'm logging him out lol
                   this.auth.signOut().then(() => {
                             TopBarComponent.isSignedIn = false;

@@ -2,7 +2,7 @@
 
 <div style="float:right;">
   <!--<button (click)="router.navigate(['register']);" *ngIf="!getStatus()" > Register </button>-->
-  <button (click)="router.navigate(['admin-page']);" *ngIf="getStatus()" > Admin </button>
+  <button (click)="router.navigate(['admin-page']);" *ngIf="isAdmin()" > Admin </button>
 
   <button (click)="router.navigate(['profile']);" *ngIf="getStatus()" > Profile </button>
 
