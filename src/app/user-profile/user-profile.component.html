@@ -1,4 +1,4 @@
-<div id="body">
+<div id="body" *ngIf="!isProfileComplete">
   <p>Complete your profile:</p>
 
   <p>Name:</p>
@@ -15,13 +15,13 @@
 
   <p>Address:</p> <!-- god i cant wait to css this -->
   <label for="county">County</label>
-  <input type="text" id="county" name="county">
+  <input type="text" id="county" name="county" required>
   <label for="city">City</label>
-  <input type="text" id="city" name="city">
+  <input type="text" id="city" name="city" required>
   <label for="street">Street</label>
-  <input type="text" id="street" name="street">
+  <input type="text" id="street" name="street" required>
   <label for="number">Number</label>
-  <input type="number" id="number" name="number"><br><br>
+  <input type="number" id="number" name="number" required><br><br>
 
   <label>Gender:</label><br>
 
@@ -31,11 +31,18 @@
     
   </div>
   <br>
-  <!-- <input type="radio" id="male" name="gender" value="male">
-  <label for="male">Male</label><br>
-  <input type="radio" id="female" name="gender" value="female">
-  <label for="female">Female</label><br><br> -->
+  <!-- Might be a bug where gender options only appear after save is pressed once T_T -->
 
   <button (click)="add_data()"> Save </button><br><br>
+
+</div>
+
+<!-- Display user data from db -->
+<div id="body" *ngIf="isProfileComplete">
+  <p>Your profile's info:</p>
+
+  <p>Your name:</p>
+
+  <button> Edit profile </button><br><br> <!-- No functionality yet -->
 
 </div>
