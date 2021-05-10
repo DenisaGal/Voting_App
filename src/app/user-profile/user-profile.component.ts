@@ -13,14 +13,14 @@ import {ApplicationRef } from '@angular/core';
 export class UserProfileComponent implements OnInit {
 
 	public static emailAddress: string = '';
-	
+
 	selectedGender: string = '';
 	genders: any = ['Male', 'Female'];
 
-  constructor(private db: AngularFirestore) { }
+  	constructor(private db: AngularFirestore) { }
 
-  ngOnInit(): void {
-  }
+  	ngOnInit(): void {
+  	}
 
 
 	radioChangeHandler (event: any){
@@ -29,7 +29,7 @@ export class UserProfileComponent implements OnInit {
 
 	getEmailAddress(): string {
      return UserProfileComponent.emailAddress;
-  }
+  	}
 
 	//basically dupa ce si fac cont, aici trebuie sa iti completezi profilul si abia dupa e ok ca user so now we have to see abt database cu user info
 
