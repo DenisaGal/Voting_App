@@ -44,10 +44,16 @@
 
      <div *ngFor="let candidate of candidates.controls; let i=index">
 
-     <label>
-       Candidate:
-       <input type="text" [formControlName]="i">
-     </label>
+
+       <div formGroupName="candidate">
+         <label>Name:</label>
+           <input type="text" [formControlName]="i">
+         <label>Details:</label>
+           <input type="text" [formControlName]="i">
+
+
+       </div>
+
    </div>
 
    <button (click)="addCandidate()">Add..</button>
