@@ -22,7 +22,10 @@ export class AdminPageComponent implements OnInit {
        endTime: ['']
      }),
      candidates: this.fb.array([
-       this.fb.control('')
+       this.fb.group({
+              candidateName: [''],
+              candidateDetails: ['']
+       })
      ])
    });
 
@@ -38,7 +41,7 @@ export class AdminPageComponent implements OnInit {
 
 /*updateName() {
   this.name.setValue('Nancy');
-}*/
+}
 
 updateProfile() {
   this.profileForm.patchValue({
@@ -47,13 +50,16 @@ updateProfile() {
       street: '123 Drew Street'
     }
   });
-}
+}*/
 
-get candidates() {
-  return this.profileForm.get('candidates') as FormArray;
-}
+  get candidates() {
+    return this.profileForm.get('candidates') as FormArray;
+  }
 
-addCandidate() {
-  this.candidates.push(this.fb.control(''));
-}
+  addCandidate() {
+    this.candidates.push(this.fb.group({
+        candidateName: [''],
+        candidateDetails: [''],
+     }));
+  }
 }
