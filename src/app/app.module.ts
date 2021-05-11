@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ElectionsPageComponent } from './elections-page/elections-page.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MainPageComponent,
     LoginComponent,
     UserProfileComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    ElectionsPageComponent
   ],
   imports: [
     BrowserModule,
