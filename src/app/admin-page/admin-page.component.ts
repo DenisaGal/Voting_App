@@ -74,6 +74,7 @@ updateProfile() {
     let iStart_Time = this.profileForm.value.duration.startTime;
     let iEnd_Date = this.profileForm.value.duration.endDate;
     let iEnd_Time = this.profileForm.value.duration.endTime;
+    //let iCandidates = this.profileForm.get('candidates');
 
     this.db.collection("Elections").doc(iUID).set({
         Name: iName,
