@@ -13,8 +13,6 @@ import { AngularFirestore } from '@angular/fire/firestore';
   styleUrls: ['./admin-page.component.css']
 })
 export class AdminPageComponent implements OnInit {
-  candidatesList: [string, string][] = [['', '']];
-
   profileForm = this.fb.group({
    details: this.fb.group({
     electionName: ['', Validators.required],
@@ -44,14 +42,24 @@ export class AdminPageComponent implements OnInit {
     window.alert('Election ' + this.profileForm.value.details.electionName + ' was added successfully.');
   }
 
+
+/*updateName() {
+  this.name.setValue('Nancy');
+}
+updateProfile() {
+  this.profileForm.patchValue({
+    firstName: 'Nancy',
+    address: {
+      street: '123 Drew Street'
+    }
+  });
+}*/
+
   get candidates() {
     return this.profileForm.get('candidates') as FormArray;
   }
 
   addCandidate() {
-    console.log(this.candidates.value);
-    console.log('Name: ' + this.profileForm.value.candidates[0].candidateName + '\nDetails: ' + this.profileForm.value.candidates.candidateDetails);
-    this.candidatesList.push(this.profileForm.value.candidates.candidateName, this.profileForm.value.candidates.candidateDetails);
     this.candidates.push(this.fb.group({
         candidateName: [''],
         candidateDetails: ['']
@@ -86,12 +94,10 @@ export class AdminPageComponent implements OnInit {
         console.error("Error adding election: ", error);
     });
 
-    console.log(this.candidatesList);
-
-    for(let candidate of this.candidatesList){
+    /*for(let candidate of this.candidatesList){
       this.db.collection("Elections").doc(iUID).collection('Candidates').doc(candidate[0]).set({
         Details: 'candidate.candidateDetails'
       })
-    }  
+    }*/
   }
 }
