@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { AngularFireAuth } from "@angular/fire/auth";
-import {ApplicationRef } from '@angular/core';
+import { ApplicationRef } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+
+import * as CryptoJS from 'crypto-js';
+import { UserProfileComponent } from "../user-profile/user-profile.component";
 
 @Component({
   selector: 'app-top-bar',
@@ -10,9 +14,10 @@ import {ApplicationRef } from '@angular/core';
 })
 export class TopBarComponent implements OnInit {
 
-  public static isSignedIn:boolean = false;
+  public static isSignedIn: boolean = false;
+  encPassword: String = 'unicorn';
 
-  constructor( private ref: ApplicationRef, private auth: AngularFireAuth, public router: Router ) {
+  constructor( private ref: ApplicationRef, private auth: AngularFireAuth, public router: Router, private db: AngularFirestore) {
     let var1 = this.ref
           this.auth.onAuthStateChanged(function(user) {
             if (user) {
@@ -26,7 +31,6 @@ export class TopBarComponent implements OnInit {
               // No user is signed in.
             }
           });
-
   }
 
   ngOnInit(): void {
@@ -37,10 +41,7 @@ export class TopBarComponent implements OnInit {
   }
 
   isAdmin(): boolean {
-     //trebuie sa aiba fiecare user o coloana is Admin in tabel cred, ca sa facem aici conditia reala, nu admin@admin XD
-
      return TopBarComponent.isSignedIn;
-
   }
 
   public logout(): void {
