@@ -3,6 +3,9 @@ import { FormArray } from '@angular/forms';
 import { FormGroup, FormControl } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { AngularFireAuth } from "@angular/fire/auth";
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-admin-page',
@@ -29,7 +32,7 @@ export class AdminPageComponent implements OnInit {
      ])
    });
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private db: AngularFirestore) { }
 
   ngOnInit(): void {
   }
@@ -61,5 +64,30 @@ updateProfile() {
         candidateName: [''],
         candidateDetails: [''],
      }));
+  }
+
+  add_election(): void {
+    let iUID = 'PlsWork';
+    let iName = this.profileForm.value.details.electionName;
+    let iDescription = this.profileForm.value.details.electionDescription;
+    let iStart_Date = this.profileForm.value.duration.startDate;
+    let iStart_Time = this.profileForm.value.duration.startTime;
+    let iEnd_Date = this.profileForm.value.duration.endDate;
+    let iEnd_Time = this.profileForm.value.duration.endTime;
+    //let iCandidates = this.profileForm.get('candidates');
+
+    this.db.collection("Elections").doc(iUID).set({
+        Name: iName,
+        Description: iDescription,
+        Start_Date: iStart_Date,
+        End_Date: iEnd_Date,
+        Candidates: 'tbd'
+    })
+    .then(() => {
+        console.log("Election successfully added!");
+    })
+    .catch((error) => {
+        console.error("Error adding election: ", error);
+    });
   }
 }
