@@ -25,10 +25,7 @@ export class AdminPageComponent implements OnInit {
        endTime: ['']
      }),
      candidates: this.fb.array([
-       this.fb.group({
-              candidateName: [''],
-              candidateDetails: ['']
-       })
+        this.createCandidate()
      ])
    });
 
@@ -39,7 +36,7 @@ export class AdminPageComponent implements OnInit {
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
-    window.alert(this.profileForm.value.details.electionName);
+    window.alert(this.profileForm.value.candidates[0].candidateName);
   }
 
 /*updateName() {
@@ -55,15 +52,19 @@ updateProfile() {
   });
 }*/
 
+  createCandidate(): FormGroup{
+    return this.fb.group({
+      candidateName: [''],
+      candidateDetails: ['']
+    });
+  }
+
   get candidates() {
     return this.profileForm.get('candidates') as FormArray;
   }
 
   addCandidate() {
-    this.candidates.push(this.fb.group({
-        candidateName: [''],
-        candidateDetails: [''],
-     }));
+    this.candidates.push(this.createCandidate());
   }
 
   add_election(): void {
