@@ -67,7 +67,6 @@ updateProfile() {
   }
 
   add_election(): void {
-    let iUID = 'PlsWork';
     let iName = this.profileForm.value.details.electionName;
     let iDescription = this.profileForm.value.details.electionDescription;
     let iStart_Date: Date = new Date(this.profileForm.value.duration.startDate);
@@ -78,6 +77,7 @@ updateProfile() {
     let iEnd_Time = this.profileForm.value.duration.endTime;
     let eTime = iEnd_Time.split(':', 2);
     let iEnd_Timestamp = new Date(iEnd_Date.getFullYear(), iEnd_Date.getMonth(), iEnd_Date.getDate(), eTime[0], eTime[1], 0o0, 0o0);
+    let iUID = iName + ' ' + iStart_Date.toDateString();
     //let iCandidates = this.profileForm.get('candidates');
 
     this.db.collection("Elections").doc(iUID).set({
