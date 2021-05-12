@@ -39,7 +39,7 @@ export class AdminPageComponent implements OnInit {
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
-    window.alert(this.profileForm.value.details.electionName);
+    window.alert('Election ' + this.profileForm.value.details.electionName + ' was added successfully.');
   }
 
 /*updateName() {
