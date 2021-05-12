@@ -14,22 +14,19 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class AdminPageComponent implements OnInit {
   profileForm = this.fb.group({
-   details: this.fb.group({
-    electionName: ['', Validators.required],
-    electionDescription: ['', Validators.required]
-   }),
-   duration: this.fb.group({
-     startDate: [''],
-     startTime: [''],
-     endDate: [''],
-     endTime: ['']
-   }),
-   candidates: this.fb.array([
-     this.fb.group({
-            candidateName: [''],
-            candidateDetails: ['']
-     })
-   ])
+     details: this.fb.group({
+      electionName: ['', Validators.required],
+      electionDescription: ['', Validators.required]
+     }),
+     duration: this.fb.group({
+       startDate: [''],
+       startTime: [''],
+       endDate: [''],
+       endTime: ['']
+     }),
+     candidates: this.fb.array([
+        this.createCandidate()
+     ])
   });
 
   constructor(private fb: FormBuilder, private db: AngularFirestore) { }
@@ -39,13 +36,14 @@ export class AdminPageComponent implements OnInit {
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
-    window.alert('Election ' + this.profileForm.value.details.electionName + ' was added successfully.');
+    //window.alert('Election ' + this.profileForm.value.details.electionName + ' was added successfully.');
+    window.alert(this.profileForm.value.candidates[0].candidateName);
   }
-
 
 /*updateName() {
   this.name.setValue('Nancy');
 }
+
 updateProfile() {
   this.profileForm.patchValue({
     firstName: 'Nancy',
@@ -55,15 +53,19 @@ updateProfile() {
   });
 }*/
 
+  createCandidate(): FormGroup{
+    return this.fb.group({
+      candidateName: [''],
+      candidateDetails: ['']
+    });
+  }
+
   get candidates() {
     return this.profileForm.get('candidates') as FormArray;
   }
 
   addCandidate() {
-    this.candidates.push(this.fb.group({
-        candidateName: [''],
-        candidateDetails: ['']
-     }));
+    this.candidates.push(this.createCandidate());
   }
 
   add_election(): void {
@@ -78,7 +80,7 @@ updateProfile() {
     let eTime = iEnd_Time.split(':', 2);
     let iEnd_Timestamp = new Date(iEnd_Date.getFullYear(), iEnd_Date.getMonth(), iEnd_Date.getDate(), eTime[0], eTime[1], 0o0, 0o0);
     let iUID = iName + ' ' + iStart_Date.toDateString();
-    let iCandidates = this.profileForm.value.candidates[1];
+    let iCandidates = this.profileForm.value.candidates;
     console.log(iCandidates);
 
     this.db.collection("Elections").doc(iUID).set({
@@ -94,10 +96,10 @@ updateProfile() {
         console.error("Error adding election: ", error);
     });
 
-    /*for(let candidate of this.candidatesList){
-      this.db.collection("Elections").doc(iUID).collection('Candidates').doc(candidate[0]).set({
-        Details: 'candidate.candidateDetails'
-      })
-    }*/
+    for(let candidate of iCandidates){
+      this.db.collection("Elections").doc(iUID).collection('Candidates').doc(candidate.candidateName).set({
+        Details: candidate.candidateDetails
+      });
+    }
   }
 }
