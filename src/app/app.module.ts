@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from "@angular/router";
 
 import { AngularFireModule} from '@angular/fire';
 import { AngularFireAuthModule } from "@angular/fire/auth";
@@ -15,6 +16,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ElectionsPageComponent } from './elections-page/elections-page.component';
+import { ElectionDetailsComponent } from './election-details/election-details.component';
 
 @NgModule({
   declarations: [
@@ -25,10 +27,15 @@ import { ElectionsPageComponent } from './elections-page/elections-page.componen
     LoginComponent,
     UserProfileComponent,
     AdminPageComponent,
-    ElectionsPageComponent
+    ElectionsPageComponent,
+    ElectionDetailsComponent
   ],
   imports: [
     BrowserModule,
+    RouterModule.forRoot([
+      { path: '', component: ElectionsPageComponent },
+      { path: 'elections/:electionName', component: ElectionDetailsComponent },
+    ]),
     AppRoutingModule,
     AngularFireModule.initializeApp({
             apiKey: "AIzaSyAsmiDyTM6FSxei6Nt-XvLjFOYzsRIKGPc",
