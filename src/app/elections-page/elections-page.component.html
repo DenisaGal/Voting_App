@@ -1,15 +1,23 @@
-<h2>Ongoing elections:</h2>
+<div class="content">
+	<h2>Ongoing elections:</h2>
 
-<!-- Deni i tried to help u here =))
-<div class="election" *ngFor="let election of elections_from_firestore | async">
+	<!-- Deni i tried to help u here =))
+		Awwwww.. Thanks so much >:D<-->
+	<div class="election123" *ngFor="let election of elections_from_firestore | async">
+	  <h3>
+	    <a [title]="election.Name">
+	      {{election.Name}}
+	    </a>
+	  </h3>
 
-  <h3>
-    <a [title]="election.Name">
-      {{ election.Name}}
-    </a>
-  </h3>
+	  <p>{{election.Description}}</p>
+	  <p>From</p>
+	  <time>{{election.Start_Date}}</time>
+		<p>to</p>
+		<time>{{election.End_Date}}</time>
+	  <p>//////////////////////////////////////////////////////////////////////////////////</p>
+	  <!-- <div class="candidates" *ngFor="let candidate of candidates _from_firestore| async">
+		</div> -->
 
-  <hr>
-
+	</div>
 </div>
--->
