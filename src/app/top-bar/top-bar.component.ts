@@ -21,6 +21,7 @@ export class TopBarComponent implements OnInit {
     let var1 = this.ref
           this.auth.onAuthStateChanged(function(user) {
             if (user) {
+              UserProfileComponent.emailAddress = user.email!;
               TopBarComponent.isSignedIn = true
               var1.tick()
               // User is signed in.
@@ -41,6 +42,31 @@ export class TopBarComponent implements OnInit {
   }
 
   isAdmin(): boolean {
+     //email from current logged in user:
+     var email = UserProfileComponent.emailAddress;
+     var encrypted_email = CryptoJS.AES.encrypt(email.trim(), this.encPassword.trim()).toString();
+
+     //email from database:
+     var result = this.db.collection("Users", ref => ref.where("Email_Address", "==", encrypted_email).limit(1)).valueChanges()
+                                 .subscribe(data=>{ console.log(data);  console.log(email);});
+
+    /* this.auth.authState.subscribe(user => {
+           var current_user = user;
+           if(current_user != null){
+                var current_email = current_user.email;
+
+                var encrypted_email = CryptoJS.AES.encrypt(current_email!.trim(), this.encPassword.trim()).toString();
+
+                           var result = this.db.collection("Users", ref => ref.where("Email_Address", "==", encrypted_email).limit(1)).valueChanges()
+                            .subscribe(data=>{ console.log(data); });
+
+           }
+     });*/
+
+
+     //deocamdata iti returneaza un array de entries din db, trebuie luat gen data.isAdmin
+
+
      return TopBarComponent.isSignedIn;
   }
 
