@@ -6,6 +6,7 @@ import { Validators } from '@angular/forms';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-admin-page',
@@ -29,7 +30,7 @@ export class AdminPageComponent implements OnInit {
      ])
   });
 
-  constructor(private fb: FormBuilder, private db: AngularFirestore) { }
+  constructor(private fb: FormBuilder, private db: AngularFirestore, public router: Router) { }
 
   ngOnInit(): void {
   }
