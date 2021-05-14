@@ -16,9 +16,6 @@ export class ElectionsPageComponent{
   	this.elections_from_firestore = this.db.collection('Elections').valueChanges();
   }
 
-  //elections_from_firestore = this.db.collection('Elections').valueChanges();
-	
-
   print(){
 	  console.log("successful");
 	  console.log(this.elections_from_firestore);
