@@ -16,6 +16,7 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ElectionsPageComponent } from './elections-page/elections-page.component';
 import { AddElectionComponent } from './add-election/add-election.component';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AddElectionComponent } from './add-election/add-election.component';
     UserProfileComponent,
     AdminPageComponent,
     ElectionsPageComponent,
-    AddElectionComponent
+    AddElectionComponent,
+    ManageUsersComponent
   ],
   imports: [
     BrowserModule,
