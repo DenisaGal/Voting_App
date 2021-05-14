@@ -34,7 +34,7 @@ import { ElectionDetailsComponent } from './election-details/election-details.co
     BrowserModule,
     RouterModule.forRoot([
       { path: '', component: ElectionsPageComponent },
-      { path: 'elections/:electionName', component: ElectionDetailsComponent },
+      { path: 'elections/:electionId', component: ElectionDetailsComponent },
     ]),
     AppRoutingModule,
     AngularFireModule.initializeApp({

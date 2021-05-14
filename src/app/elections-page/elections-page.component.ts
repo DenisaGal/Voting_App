@@ -11,7 +11,6 @@ import { Observable } from 'rxjs';
 export class ElectionsPageComponent{
 
 	elections_from_firestore: Observable<any[]>;
-	//candidates_from_firestore: Observable<any[]>;
 
   constructor(private db: AngularFirestore) { 
   	this.elections_from_firestore = this.db.collection('Elections').valueChanges({idField: 'id'});

@@ -75,7 +75,7 @@ updateProfile() {
     let iStart_Time = this.profileForm.value.duration.startTime;
     let iEnd_Date = this.profileForm.value.duration.endDate;
     let iEnd_Time = this.profileForm.value.duration.endTime;
-    let iUID = iName + ' ' + iStart_Date;
+    let iUID = iName + '-' + iStart_Date;
     let iCandidates = this.profileForm.value.candidates;
     console.log(iCandidates);
 
