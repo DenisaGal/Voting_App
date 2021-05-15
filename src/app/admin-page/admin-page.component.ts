@@ -6,6 +6,7 @@ import { Validators } from '@angular/forms';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-admin-page',
@@ -13,32 +14,17 @@ import { AngularFirestore } from '@angular/fire/firestore';
   styleUrls: ['./admin-page.component.css']
 })
 export class AdminPageComponent implements OnInit {
-  profileForm = this.fb.group({
-     details: this.fb.group({
-      electionName: ['', Validators.required],
-      electionDescription: ['', Validators.required]
-     }),
-     duration: this.fb.group({
-       startDate: [''],
-       startTime: [''],
-       endDate: [''],
-       endTime: ['']
-     }),
-     candidates: this.fb.array([
-        this.createCandidate()
-     ])
-  });
 
-  constructor(private fb: FormBuilder, private db: AngularFirestore) { }
+  constructor(public router: Router) { }
 
   ngOnInit(): void {
   }
 
-  onSubmit() {
+  /*onSubmit() {
     // TODO: Use EventEmitter with form value
     //window.alert('Election ' + this.profileForm.value.details.electionName + ' was added successfully.');
     //window.alert(this.profileForm.value.candidates[0].candidateName);
-  }
+  }*/
 
 /*updateName() {
   this.name.setValue('Nancy');
@@ -53,7 +39,7 @@ updateProfile() {
   });
 }*/
 
-  createCandidate(): FormGroup{
+ /* createCandidate(): FormGroup{
     return this.fb.group({
       candidateName: [''],
       candidateDetails: ['']
@@ -99,5 +85,5 @@ updateProfile() {
         Details: candidate.candidateDetails
       });
     }
-  }
+  }*/
 }

@@ -6,6 +6,8 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { ElectionsPageComponent } from './elections-page/elections-page.component';
+import { AddElectionComponent } from './add-election/add-election.component';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
 
 const routes: Routes = [
 {path: 'admin-page', component: AdminPageComponent },
@@ -13,7 +15,9 @@ const routes: Routes = [
 {path: "", component: MainPageComponent},
 {path: 'login', component: LoginComponent },
 {path: 'elections', component: ElectionsPageComponent },
-{path: 'profile', component: UserProfileComponent }];
+{path: 'profile', component: UserProfileComponent },
+{path: 'add-election', component: AddElectionComponent },
+{path: 'manage-users', component: ManageUsersComponent }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

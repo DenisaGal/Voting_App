@@ -16,6 +16,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ElectionsPageComponent } from './elections-page/elections-page.component';
+import { AddElectionComponent } from './add-election/add-election.component';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ElectionDetailsComponent } from './election-details/election-details.component';
 
 @NgModule({
@@ -28,6 +30,8 @@ import { ElectionDetailsComponent } from './election-details/election-details.co
     UserProfileComponent,
     AdminPageComponent,
     ElectionsPageComponent,
+    AddElectionComponent,
+    ManageUsersComponent
     ElectionDetailsComponent
   ],
   imports: [
