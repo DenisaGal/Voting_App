@@ -15,6 +15,7 @@ import { ManageUsersComponent } from "../manage-users/manage-users.component";
 export class UserProfileComponent implements OnInit {
 
 	public static emailAddress: string = '';
+	currentUID: string = '';
 	isProfileComplete: boolean = false;
 	aFlag: boolean = false;
 	//we need a more secure place for encPassword
@@ -50,6 +51,7 @@ export class UserProfileComponent implements OnInit {
 	                                 			temp = CryptoJS.AES.decrypt(data[i].Email_Address.trim(), this.encPassword.trim()).toString(CryptoJS.enc.Utf8);
 	                                 			if(temp == this.getEmailAddress()){
 	                                 				uid = data[i].id;
+	                                 				this.currentUID = data[i].id;
 	                                 				flag = true;
 	                                 				this.aFlag = true;
 	                                 			}
@@ -58,6 +60,10 @@ export class UserProfileComponent implements OnInit {
   		//console.log('Email: ' + this.getEmailAddress() + '\nencrypted_email: ' + encrypted_email + '\nResult: ' + result + '\nflag: ' + flag);
   		console.log(this.aFlag);
   		return this.aFlag;
+  	}
+
+  	getPS():boolean {
+  		return this.getProfileStatus();
   	}
 
 	//basically dupa ce si fac cont, aici trebuie sa iti completezi profilul si abia dupa e ok ca user so now we have to see abt database cu user info
