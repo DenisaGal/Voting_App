@@ -3,6 +3,7 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from "@angular/router";
+import { Observable } from 'rxjs';
 import * as CryptoJS from 'crypto-js';  
 
 @Component({
@@ -14,7 +15,6 @@ export class UserProfileComponent implements OnInit {
 
 	public static emailAddress: string = '';
 	isProfileComplete: boolean = false;
-
 	//we need a more secure place for encPassword
 	encPassword: String = 'unicorn';
 
@@ -33,6 +33,22 @@ export class UserProfileComponent implements OnInit {
 
 	getEmailAddress(): string {
      return UserProfileComponent.emailAddress;
+  	}
+
+  	getProfileStatus(): boolean{
+  		var sEmail = this.getEmailAddress();
+  		var encrypted_email = CryptoJS.AES.encrypt(sEmail.trim(), this.encPassword.trim()).toString();
+  		/*var result = this.db.collection("Users", ref => ref.where("Email_Address", "==", encrypted_email).limit(1)).valueChanges()
+                                 .subscribe(data=>{ console.log('data: ' + data);});*/
+
+        /*result = this.db.collection("Users", ref => ref.where("Email_Address", "==", encrypted_email)).get()
+  		console.log('Email: ' + this.getEmailAddress() + '\nencrypted_email: ' + encrypted_email + '\nResult: ' + result);
+  		if(result){
+  			console.log('true');
+  			return true;
+  		}
+  		console.log('false');*/
+  		return false;
   	}
 
 	//basically dupa ce si fac cont, aici trebuie sa iti completezi profilul si abia dupa e ok ca user so now we have to see abt database cu user info
@@ -68,6 +84,7 @@ export class UserProfileComponent implements OnInit {
 		    First_Name: eFirst_Name,
 		    Last_Name: eLast_Name,
 		    Email_Address: eEmailAddress,
+		    County: eCounty,
 		    City: eCity,
 		    Street: eStreet,
 		    Number: eNumber,

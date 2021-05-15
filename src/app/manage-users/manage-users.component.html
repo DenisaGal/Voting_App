@@ -1,3 +1,12 @@
-<p>manage-users works!</p>
+<div class="content">
+	<h2>Current user profiles:</h2>
 
-<!-- display users from db-->
+	<div class="user" *ngFor="let user of users_from_firestore | async">
+	  <h3>{{user.id}}</h3>
+	  <p>Name: {{user.First_Name}} {{user.Last_Name}}</p>
+	  <p>Address: {{user.City}}</p>
+	  <button>Make Admin</button>
+	  <br>
+
+	</div>
+</div>
