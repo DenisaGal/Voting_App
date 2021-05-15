@@ -1,16 +1,18 @@
 <h2>Welcome to your profile</h2>
 <button (click)="getProfileStatus()"> Status </button>
 
+
+<!-- Display user data from db -->
 <div id="body" *ngIf="getProfileStatus()">
   <p>Your profile's info:</p>
+
+  <p>Your name:</p>
+
+  <button> Edit profile </button><br><br> <!-- No functionality yet -->
+
 </div>
 
-<!-- <div id="body" *ngIf="getProfileStatus(); else elseBlock">
-  <p>Your profile's info:</p>
-</div>
-<ng-template #elseBlock><p>Complete your profile:</p></ng-template> -->
-
-<!-- <div id="body">
+<div id="body" *ngIf="!getProfileStatus()">
   <p>Complete your profile:</p>
 
   <p>Name:</p>
@@ -25,8 +27,8 @@
   <label for="serie">Identity card series and number:</label><br>
   <input type="text" id="serie" name="serie" required><br><br>
 
-  <p>Address:</p>  --><!-- god i cant wait to css this -->
-  <!-- <label for="county">County</label>
+  <p>Address:</p>  <!-- god i cant wait to css this-->
+  <label for="county">County</label>
   <input type="text" id="county" name="county" required>
   <label for="city">City</label>
   <input type="text" id="city" name="city" required>
@@ -42,19 +44,9 @@
     <i>{{gender}}</i><br>
     
   </div>
-  <br> -->
+  <br>
   <!-- Might be a bug where gender options only appear after save is pressed once T_T -->
 
-  <!-- <button (click)="add_data()"> Save </button><br><br>
+  <button (click)="add_data()"> Save </button><br><br>
 
-</div> -->
-
-<!-- Display user data from db -->
-<!-- <div id="body" *ngIf="isProfileComplete">
-  <p>Your profile's info:</p>
-
-  <p>Your name:</p>
-
-  <button> Edit profile </button><br><br>--> <!-- No functionality yet -->
-
-<!-- </div> -->
+</div>

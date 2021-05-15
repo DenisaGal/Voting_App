@@ -5,6 +5,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from "@angular/router";
 import { Observable } from 'rxjs';
 import * as CryptoJS from 'crypto-js';  
+import { ManageUsersComponent } from "../manage-users/manage-users.component";
 
 @Component({
   selector: 'app-user-profile',
@@ -15,6 +16,7 @@ export class UserProfileComponent implements OnInit {
 
 	public static emailAddress: string = '';
 	isProfileComplete: boolean = false;
+	aFlag: boolean = false;
 	//we need a more secure place for encPassword
 	encPassword: String = 'unicorn';
 
@@ -36,19 +38,26 @@ export class UserProfileComponent implements OnInit {
   	}
 
   	getProfileStatus(): boolean{
+  		var temp = '';
+  		var uid = '';
+  		var flag: boolean = false;
   		var sEmail = this.getEmailAddress();
   		var encrypted_email = CryptoJS.AES.encrypt(sEmail.trim(), this.encPassword.trim()).toString();
-  		/*var result = this.db.collection("Users", ref => ref.where("Email_Address", "==", encrypted_email).limit(1)).valueChanges()
-                                 .subscribe(data=>{ console.log('data: ' + data);});*/
-
-        /*result = this.db.collection("Users", ref => ref.where("Email_Address", "==", encrypted_email)).get()
-  		console.log('Email: ' + this.getEmailAddress() + '\nencrypted_email: ' + encrypted_email + '\nResult: ' + result);
-  		if(result){
-  			console.log('true');
-  			return true;
-  		}
-  		console.log('false');*/
-  		return false;
+  		var result = this.db.collection<any>("Users").valueChanges({idField: 'id'})
+                                 .subscribe(data=>{ //console.log('data: ' + data[1].Email_Address);
+                                 			let n = data.length;
+                                 			for(let i = 0; i < n; i++){
+	                                 			temp = CryptoJS.AES.decrypt(data[i].Email_Address.trim(), this.encPassword.trim()).toString(CryptoJS.enc.Utf8);
+	                                 			if(temp == this.getEmailAddress()){
+	                                 				uid = data[i].id;
+	                                 				flag = true;
+	                                 				this.aFlag = true;
+	                                 			}
+                                 			}
+                                 });
+  		//console.log('Email: ' + this.getEmailAddress() + '\nencrypted_email: ' + encrypted_email + '\nResult: ' + result + '\nflag: ' + flag);
+  		console.log(this.aFlag);
+  		return this.aFlag;
   	}
 
 	//basically dupa ce si fac cont, aici trebuie sa iti completezi profilul si abia dupa e ok ca user so now we have to see abt database cu user info
@@ -77,7 +86,7 @@ export class UserProfileComponent implements OnInit {
 		let eNumber = CryptoJS.AES.encrypt(iNumber.trim(), this.encPassword.trim()).toString();
 		let eGender = CryptoJS.AES.encrypt(iGender.trim(), this.encPassword.trim()).toString();
 		let eEmailAddress = CryptoJS.AES.encrypt(iEmailAddress.trim(), this.encPassword.trim()).toString();
-		//to decript use CryptoJS.AES.decrypt(encryptText.trim(), this.decPassword.trim()).toString(CryptoJS.enc.Utf8);
+		//to decript use CryptoJS.AES.decrypt(encryptText.trim(), this.encPassword.trim()).toString(CryptoJS.enc.Utf8);
 
 		this.db.collection("Users").doc(eCNP).set({
 		    CID: eCID,
@@ -94,6 +103,7 @@ export class UserProfileComponent implements OnInit {
 		.then(() => {
 			this.isProfileComplete = true;
     		console.log("Document successfully written!");
+    		this.getProfileStatus();
 		})
 		.catch((error) => {
 		    console.error("Error writing document: ", error);

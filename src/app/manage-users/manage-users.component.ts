@@ -13,10 +13,9 @@ export class ManageUsersComponent implements OnInit {
 	users_from_firestore: Observable<any[]>;
 
   constructor(private db: AngularFirestore) { 
-  	this.users_from_firestore = this.db.collection('Users').valueChanges({idField: 'id'});
+  	this.users_from_firestore = this.db.collection<any>('Users').valueChanges({idField: 'id'});
   }
 
   ngOnInit(): void {
   }
-
 }
