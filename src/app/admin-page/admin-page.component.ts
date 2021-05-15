@@ -15,9 +15,75 @@ import { Router } from "@angular/router";
 })
 export class AdminPageComponent implements OnInit {
 
-
   constructor(public router: Router) { }
 
   ngOnInit(): void {
   }
+
+  /*onSubmit() {
+    // TODO: Use EventEmitter with form value
+    //window.alert('Election ' + this.profileForm.value.details.electionName + ' was added successfully.');
+    //window.alert(this.profileForm.value.candidates[0].candidateName);
+  }*/
+
+/*updateName() {
+  this.name.setValue('Nancy');
+}
+
+updateProfile() {
+  this.profileForm.patchValue({
+    firstName: 'Nancy',
+    address: {
+      street: '123 Drew Street'
+    }
+  });
+}*/
+
+ /* createCandidate(): FormGroup{
+    return this.fb.group({
+      candidateName: [''],
+      candidateDetails: ['']
+    });
+  }
+
+  get candidates() {
+    return this.profileForm.get('candidates') as FormArray;
+  }
+
+  addCandidate() {
+    this.candidates.push(this.createCandidate());
+  }
+
+  add_election(): void {
+    let iName = this.profileForm.value.details.electionName;
+    let iDescription = this.profileForm.value.details.electionDescription;
+    let iStart_Date = this.profileForm.value.duration.startDate;
+    let iStart_Time = this.profileForm.value.duration.startTime;
+    let iEnd_Date = this.profileForm.value.duration.endDate;
+    let iEnd_Time = this.profileForm.value.duration.endTime;
+    let iUID = iName + '-' + iStart_Date;
+    let iCandidates = this.profileForm.value.candidates;
+    console.log(iCandidates);
+
+    this.db.collection("Elections").doc(iUID).set({
+        Name: iName,
+        Description: iDescription,
+        Start_Date: iStart_Date,
+        Start_Time: iStart_Time,
+        End_Date: iEnd_Date,
+        End_Time: iEnd_Time
+    })
+    .then(() => {
+        console.log("Election successfully added!");
+    })
+    .catch((error) => {
+        console.error("Error adding election: ", error);
+    });
+
+    for(let candidate of iCandidates){
+      this.db.collection("Elections").doc(iUID).collection('Candidates').doc(candidate.candidateName).set({
+        Details: candidate.candidateDetails
+      });
+    }
+  }*/
 }
