@@ -31,7 +31,7 @@ import { ElectionDetailsComponent } from './election-details/election-details.co
     AdminPageComponent,
     ElectionsPageComponent,
     AddElectionComponent,
-    ManageUsersComponent
+    ManageUsersComponent,
     ElectionDetailsComponent
   ],
   imports: [
