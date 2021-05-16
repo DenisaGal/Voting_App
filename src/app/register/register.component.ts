@@ -37,16 +37,18 @@ export class RegisterComponent implements OnInit {
                   var current = this.auth.currentUser;
                   current.then((currentuser) => {
                           if(currentuser)
-                                currentuser.sendEmailVerification();});
+                                currentuser.sendEmailVerification();
+                                //send user to profile to complete it
+                                this.router.navigate(['./profile']);});
 
                   //fireauth logs the user in automatically on register, so I'm logging him out lol
-                  this.auth.signOut().then(() => {
+                  /*this.auth.signOut().then(() => {
                             TopBarComponent.isSignedIn = false;
                           }).catch((error) => {
                             window.alert("Something went wrong :(");
-                          });
+                          });*/
                   //now log URSELF in.
-                  this.router.navigate(['./login']);
+                  //this.router.navigate(['./login']);
                 })
                 .catch((error) => {
                   window.alert(error.message);

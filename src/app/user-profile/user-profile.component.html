@@ -1,17 +1,5 @@
 <h2>Welcome to your profile</h2>
-<!-- <button (click)="getProfileStatus()"> Status </button> -->
 
-
-<!-- Display user data from db -->
-<!-- <div id="body" *ngIf="getProfileStatus()">
-  <p>Your profile's info:</p>
-
-  <p>Your name:</p>
-
-  <button> Edit profile </button><br><br>
-</div> -->
-
-<!-- <div id="body" *ngIf="!getProfileStatus()"> --> 
 <div id="body"> 
   <p>Complete your profile:</p>
 
@@ -37,13 +25,25 @@
   <label for="number">Number</label>
   <input type="number" id="number" name="number" required><br><br>
 
-  <label>Gender:</label><br>
+  <label>Gender:  </label><br>
+  <div>
+    <input type="radio" name="selected_gender" value="Male" (change)="radioChangeHandler($event)">
+    <i>Male</i><br>  
+    <input type="radio" name="selected_gender" value="Female" (change)="radioChangeHandler($event)">
+    <i>Female</i><br>  
+  </div>
 
-  <div *ngFor="let gender of genders">
+  <!-- <select name="gender" id="genders">
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+  </select>
+  <br> -->
+
+  <!-- <div *ngFor="let gender of genders">
     <input type="radio" name="selected_gender" value="{{gender}}" (change)="radioChangeHandler($event)">
     <i>{{gender}}</i><br>
     
-  </div>
+  </div> -->
   <br>
   <!-- Might be a bug where gender options only appear after save is pressed once T_T -->
 
