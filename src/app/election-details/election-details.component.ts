@@ -3,6 +3,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { TopBarComponent } from "../top-bar/top-bar.component";
 
 
 @Component({
@@ -46,6 +47,10 @@ export class ElectionDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void { }
+
+  isSignedIn(): boolean{
+  	return TopBarComponent.isSignedIn;
+  }
 
   isActive(): boolean {
   	//returns true if election can be voted for today
