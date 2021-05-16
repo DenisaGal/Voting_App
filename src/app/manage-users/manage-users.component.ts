@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFirestore } from '@angular/fire/firestore';
 
+
 @Component({
   selector: 'app-manage-users',
   templateUrl: './manage-users.component.html',
@@ -9,14 +10,13 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class ManageUsersComponent implements OnInit {
 
-  constructor(private store: AngularFirestore) { }
+	users_from_firestore: Observable<any[]>;
 
-   users_from_firestore = this.store.collection('Users').valueChanges({idField: 'id'});
-
+  constructor(private db: AngularFirestore) { 
+  	this.users_from_firestore = this.db.collection<any>('Users').valueChanges({idField: 'id'});
+  }
 
   ngOnInit(): void {
   }
-
-
 
 }
