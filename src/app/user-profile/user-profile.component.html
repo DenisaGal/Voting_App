@@ -1,6 +1,6 @@
 <h2>Welcome to your profile</h2>
 
-<div id="body"> 
+<div id="body">
   <p>Complete your profile:</p>
 
   <p>Name:</p>
@@ -28,9 +28,9 @@
   <label>Gender:  </label><br>
   <div>
     <input type="radio" name="selected_gender" value="Male" (change)="radioChangeHandler($event)">
-    <i>Male</i><br>  
+    <i>Male</i><br>
     <input type="radio" name="selected_gender" value="Female" (change)="radioChangeHandler($event)">
-    <i>Female</i><br>  
+    <i>Female</i><br>
   </div>
 
   <!-- <select name="gender" id="genders">
@@ -42,11 +42,12 @@
   <!-- <div *ngFor="let gender of genders">
     <input type="radio" name="selected_gender" value="{{gender}}" (change)="radioChangeHandler($event)">
     <i>{{gender}}</i><br>
-    
+
   </div> -->
   <br>
-  <!-- Might be a bug where gender options only appear after save is pressed once T_T -->
+  <!-- Might be a bug where gender options only appear after save is pressed once T_T-->
 
+  <button (click)="test()"> Test </button><br><br>
   <button (click)="add_data()"> Save </button><br><br>
 
 </div>
