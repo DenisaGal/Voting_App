@@ -101,7 +101,7 @@ export class UserProfileComponent implements OnInit {
     if(!iCNP || !iCID || !iFirst_Name || !iLast_Name || !iCounty || !iCity || !iStreet || !iNumber || !iGender)
       window.alert("You must complete all the fields in your profile!");
     else{
-      var isValid = this.validate(iCNP);
+      var isValid = this.validateCNP(iCNP);
       if( isValid != 0){
         if(isValid == 1)
             window.alert("CNP must be 13 digits");
@@ -111,42 +111,55 @@ export class UserProfileComponent implements OnInit {
             window.alert("CNP birth date is invalid");
         if(isValid == 4)
             window.alert("We're sorry, but you can't vote until you are of legal age! :(");
-
+        if(isValid == 5)
+            window.alert("CNP value doesn't match county in address or in CI series");
+        if(isValid == 6)
+            window.alert("CNP isn't valid (last digits)");
       }
       else{
-        this.db.collection("Users").doc(eCNP).set({
-            CID: eCID,
-            First_Name: eFirst_Name,
-            Last_Name: eLast_Name,
-            Email_Address: eEmailAddress,
-            County: eCounty,
-            City: eCity,
-            Street: eStreet,
-            Number: eNumber,
-            Gender: eGender,
-            Admin: false
-        })
-        .then(() => {
-          this.isProfileComplete = true;
-            console.log("Document successfully written!");
-            this.getProfileStatus();
-            //fireauth logs the user in automatically on register, so I'm logging him out lol
-                      this.auth.signOut().then(() => {
-                                TopBarComponent.isSignedIn = false;
-                              }).catch((error) => {
-                                window.alert("Something went wrong :(");
-                              });
-                      //now log URSELF in.
-                      this.router.navigate(['./login']);
-        })
-        .catch((error) => {
-            console.error("Error writing document: ", error);
-        });
+        var isValid = this.validateCI(iCID);
+        if( isValid != 0){
+
+        }
+        else{
+          this.db.collection("Users").doc(eCNP).set({
+              CID: eCID,
+              First_Name: eFirst_Name,
+              Last_Name: eLast_Name,
+              Email_Address: eEmailAddress,
+              County: eCounty,
+              City: eCity,
+              Street: eStreet,
+              Number: eNumber,
+              Gender: eGender,
+              Admin: false
+          })
+          .then(() => {
+            this.isProfileComplete = true;
+              console.log("Document successfully written!");
+              this.getProfileStatus();
+              //fireauth logs the user in automatically on register, so I'm logging him out lol
+                        this.auth.signOut().then(() => {
+                                  TopBarComponent.isSignedIn = false;
+                                }).catch((error) => {
+                                  window.alert("Something went wrong :(");
+                                });
+                        //now log URSELF in.
+                        this.router.navigate(['./login']);
+          })
+          .catch((error) => {
+              console.error("Error writing document: ", error);
+          });
+        }
       }
     }
 	}
 
-	validate(cnp:string): number {
+  validateCI(iCID : string): number{
+    return 0;
+  }
+
+	validateCNP(cnp:string): number {
 	  //test lentgh
     if(cnp.length != 13)
       return 1;
@@ -179,11 +192,35 @@ export class UserProfileComponent implements OnInit {
          if(parseInt(dd) - day <= 0)
            return 4;
 
+    //check county code
+    let counties = new Map([
+            ["AB", 1],["AR", 2], ["AG", 3], ["BC", 4], ["BH", 5], ["BN", 6],["BT", 7], ["BV", 8], ["BR", 9], ["BZ", 10],
+            ["CS", 11],["CJ", 12],["CT", 13],["CV", 14],["DB", 15],["DJ", 16],["GL", 17],["GJ", 18],["HR", 19],["HD", 20],
+            ["IL", 21],["IS", 22],["IF", 23],["MM", 24],["MH", 25],["MS", 26], ["NT", 27], ["OT", 28],["PH", 29],["SM", 30],
+            ["SJ", 31],["SB", 32], ["SV", 33],["TR", 34],["TM", 35], ["TL", 36],["VS", 37],["VL", 38],["VN", 39],["B", 40],
+            ["B", 31],["B", 42],["B", 43],["B", 44],["B", 45],["B", 46],["CL", 51],["GR", 52]]);
+    let county = parseInt(cnp.slice(7, 9));
+    if (county > 52)
+      return 5;
+    if ( counties.get((<HTMLInputElement>document.getElementById("serie")).value.slice(0, 2)) != county)
+      return 5;
+
+    //lastly, the checksum digits at the end:
+    let control = "279146358279";
+    var i, checksum = 0 ;
+    for( i = 0; i < 12; i++){
+      checksum += parseInt(control[i]) * parseInt(cnp[i]);
+    }
+    var digit = checksum % 11;
+    if(digit == 10)
+      digit = 1;
+    if(digit != parseInt(cnp[12]))
+      return 6;
 
     return 0;
 	}
 
 	test(): void{
-	  window.alert((<HTMLInputElement>document.getElementById("cnp")).value.slice(3, 5));
+	  window.alert((<HTMLInputElement>document.getElementById("cnp")).value[12]);
 	}
 }
