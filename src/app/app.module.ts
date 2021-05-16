@@ -19,6 +19,7 @@ import { ElectionsPageComponent } from './elections-page/elections-page.componen
 import { AddElectionComponent } from './add-election/add-election.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ElectionDetailsComponent } from './election-details/election-details.component';
+import { ForgotPwdComponent } from './forgot-pwd/forgot-pwd.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ElectionDetailsComponent } from './election-details/election-details.co
     ElectionsPageComponent,
     AddElectionComponent,
     ManageUsersComponent,
-    ElectionDetailsComponent
+    ElectionDetailsComponent,
+    ForgotPwdComponent
   ],
   imports: [
     BrowserModule,
