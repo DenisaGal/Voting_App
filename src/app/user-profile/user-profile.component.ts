@@ -54,6 +54,7 @@ export class UserProfileComponent implements OnInit {
 	                                 				this.currentUID = data[i].id;
 	                                 				flag = true;
 	                                 				this.aFlag = true;
+	                                 				this.isProfileComplete = true;
 	                                 			}
                                  			}
                                  });
