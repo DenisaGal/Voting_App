@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-manage-users',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageUsersComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store: AngularFirestore) { }
+
+   users_from_firestore = this.store.collection('Users').valueChanges({idField: 'id'});
+
 
   ngOnInit(): void {
   }
+
+
 
 }

@@ -3,7 +3,7 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from "@angular/router";
-import * as CryptoJS from 'crypto-js';  
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-user-profile',
@@ -52,7 +52,7 @@ export class UserProfileComponent implements OnInit {
 		let iEmailAddress = this.getEmailAddress();
 
 		let eCNP = CryptoJS.AES.encrypt(iCNP.trim(), this.encPassword.trim()).toString();
-		let eCID = CryptoJS.AES.encrypt(iCID.trim(), this.encPassword.trim()).toString();  
+		let eCID = CryptoJS.AES.encrypt(iCID.trim(), this.encPassword.trim()).toString();
 		let eFirst_Name = CryptoJS.AES.encrypt(iFirst_Name.trim(), this.encPassword.trim()).toString();
 		let eLast_Name = CryptoJS.AES.encrypt(iLast_Name.trim(), this.encPassword.trim()).toString();
 		let eCounty = CryptoJS.AES.encrypt(iCounty.trim(), this.encPassword.trim()).toString();
@@ -61,7 +61,7 @@ export class UserProfileComponent implements OnInit {
 		let eNumber = CryptoJS.AES.encrypt(iNumber.trim(), this.encPassword.trim()).toString();
 		let eGender = CryptoJS.AES.encrypt(iGender.trim(), this.encPassword.trim()).toString();
 		let eEmailAddress = CryptoJS.AES.encrypt(iEmailAddress.trim(), this.encPassword.trim()).toString();
-		//to decript use CryptoJS.AES.decrypt(encryptText.trim(), this.decPassword.trim()).toString(CryptoJS.enc.Utf8);
+		//to decrypt use CryptoJS.AES.decrypt(encryptText.trim(), this.decPassword.trim()).toString(CryptoJS.enc.Utf8);
 
 		this.db.collection("Users").doc(eCNP).set({
 		    CID: eCID,
