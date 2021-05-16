@@ -105,7 +105,7 @@ export class UserProfileComponent implements OnInit {
 		    City: eCity,
 		    Street: eStreet,
 		    Number: eNumber,
-		    Gender: iGender,
+		    Gender: eGender,
 		    Admin: false
 		})
 		.then(() => {
