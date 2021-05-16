@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-manage-users',
@@ -18,4 +18,5 @@ export class ManageUsersComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
 }
