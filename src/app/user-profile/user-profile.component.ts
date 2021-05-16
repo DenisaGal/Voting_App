@@ -5,7 +5,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from "@angular/router";
 
 import { Observable } from 'rxjs';
-import * as CryptoJS from 'crypto-js';  
+import * as CryptoJS from 'crypto-js';
 import { ManageUsersComponent } from "../manage-users/manage-users.component";
 import { TopBarComponent } from "../top-bar/top-bar.component";
 
@@ -70,7 +70,6 @@ export class UserProfileComponent implements OnInit {
   		return this.getProfileStatus();
   	}
 
-	//basically dupa ce si fac cont, aici trebuie sa iti completezi profilul si abia dupa e ok ca user so now we have to see abt database cu user info
 
 	//!!add data validation rules!! (cnp sa fie 13 cifre etc)
 
@@ -99,34 +98,92 @@ export class UserProfileComponent implements OnInit {
 
 		//to decript use CryptoJS.AES.decrypt(encryptText.trim(), this.encPassword.trim()).toString(CryptoJS.enc.Utf8);
 
+    if(!iCNP || !iCID || !iFirst_Name || !iLast_Name || !iCounty || !iCity || !iStreet || !iNumber || !iGender)
+      window.alert("You must complete all the fields in your profile!");
+    else{
+      var isValid = this.validate(iCNP);
+      if( isValid != 0){
+        if(isValid == 1)
+            window.alert("CNP must be 13 digits");
+        if(isValid == 2)
+            window.alert("CNP gender doesn't match to selected gender");
+        if(isValid == 3)
+            window.alert("CNP birth date is invalid");
+        if(isValid == 4)
+            window.alert("We're sorry, but you can't vote until you are of legal age! :(");
 
-		this.db.collection("Users").doc(eCNP).set({
-		    CID: eCID,
-		    First_Name: eFirst_Name,
-		    Last_Name: eLast_Name,
-		    Email_Address: eEmailAddress,
-		    County: eCounty,
-		    City: eCity,
-		    Street: eStreet,
-		    Number: eNumber,
-		    Gender: eGender,
-		    Admin: false
-		})
-		.then(() => {
-			this.isProfileComplete = true;
-    		console.log("Document successfully written!");
-    		this.getProfileStatus();
-    		//fireauth logs the user in automatically on register, so I'm logging him out lol
-                  this.auth.signOut().then(() => {
-                            TopBarComponent.isSignedIn = false;
-                          }).catch((error) => {
-                            window.alert("Something went wrong :(");
-                          });
-                  //now log URSELF in.
-                  this.router.navigate(['./login']);
-		})
-		.catch((error) => {
-		    console.error("Error writing document: ", error);
-		});
+      }
+      else{
+        this.db.collection("Users").doc(eCNP).set({
+            CID: eCID,
+            First_Name: eFirst_Name,
+            Last_Name: eLast_Name,
+            Email_Address: eEmailAddress,
+            County: eCounty,
+            City: eCity,
+            Street: eStreet,
+            Number: eNumber,
+            Gender: eGender,
+            Admin: false
+        })
+        .then(() => {
+          this.isProfileComplete = true;
+            console.log("Document successfully written!");
+            this.getProfileStatus();
+            //fireauth logs the user in automatically on register, so I'm logging him out lol
+                      this.auth.signOut().then(() => {
+                                TopBarComponent.isSignedIn = false;
+                              }).catch((error) => {
+                                window.alert("Something went wrong :(");
+                              });
+                      //now log URSELF in.
+                      this.router.navigate(['./login']);
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });
+      }
+    }
+	}
+
+	validate(cnp:string): number {
+	  //test lentgh
+    if(cnp.length != 13)
+      return 1;
+
+    //test first digit vs gender
+    if( ((parseInt(cnp[0]) % 2 == 1) && (this.selectedGender == "Female"))  || ((parseInt(cnp[0]) % 2 == 0) && (this.selectedGender == "Male")))
+      return 2;
+
+    let year = 0;
+    //check valid date and then age
+    if(parseInt(cnp[0]) < 3)
+       year = parseInt(cnp.slice(1, 3)) + 1000;
+    else
+       year = parseInt(cnp.slice(1, 3)) + 2000;
+    let month = parseInt(cnp.slice(3, 5));
+    if(month > 13)
+      return 3;
+    let day  = parseInt(cnp.slice(5, 7));
+
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    if(yyyy - year < 18)
+      return 4;
+    else if (yyyy - year == 18)
+      if(parseInt(mm) - month <= 0)
+        return 4;
+      else if (parseInt(mm) == month)
+         if(parseInt(dd) - day <= 0)
+           return 4;
+
+
+    return 0;
+	}
+
+	test(): void{
+	  window.alert((<HTMLInputElement>document.getElementById("cnp")).value.slice(3, 5));
 	}
 }
