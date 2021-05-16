@@ -22,7 +22,7 @@ export class ElectionDetailsComponent implements OnInit {
 	candidates_from_firestore: Observable<any[]>;
 
   constructor(private route: ActivatedRoute, private db: AngularFirestore) { 
-  	// First get the election id from the current route (so we can look for it in the db and get the details)
+  	//First get the election id from the current route (so we can look for it in the db and get the details)
 	  const routeParams = this.route.snapshot.paramMap;
 	  const electionIdFromRoute = String(routeParams.get('electionId'));
 	  console.log('ID: ' + electionIdFromRoute + '\n' + this.db.collection<any>('Elections').doc(electionIdFromRoute).get());
