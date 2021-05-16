@@ -7,6 +7,7 @@ import { Router } from "@angular/router";
 import { Observable } from 'rxjs';
 import * as CryptoJS from 'crypto-js';  
 import { ManageUsersComponent } from "../manage-users/manage-users.component";
+import { TopBarComponent } from "../top-bar/top-bar.component";
 
 
 @Component({
@@ -26,7 +27,7 @@ export class UserProfileComponent implements OnInit {
 	selectedGender: string = '';
 	genders: any = ['Male', 'Female'];
 
-  	constructor(private db: AngularFirestore) { }
+  	constructor(private db: AngularFirestore, private auth: AngularFireAuth, public router: Router) { }
 
   	ngOnInit(): void {
   	}
@@ -115,6 +116,14 @@ export class UserProfileComponent implements OnInit {
 			this.isProfileComplete = true;
     		console.log("Document successfully written!");
     		this.getProfileStatus();
+    		//fireauth logs the user in automatically on register, so I'm logging him out lol
+                  this.auth.signOut().then(() => {
+                            TopBarComponent.isSignedIn = false;
+                          }).catch((error) => {
+                            window.alert("Something went wrong :(");
+                          });
+                  //now log URSELF in.
+                  this.router.navigate(['./login']);
 		})
 		.catch((error) => {
 		    console.error("Error writing document: ", error);
