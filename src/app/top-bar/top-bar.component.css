@@ -1,0 +1,39 @@
+
+#bar{
+  background-color: #efefef;
+}
+
+
+#home_button{
+  height: 100px;
+  width: 200px;
+	border: none;
+	background-image: url("./votelogo.png");
+	background-size: cover;
+	margin-right: 20px;
+}
+
+#home_button:hover{
+  opacity: 0.8;
+  cursor: pointer;
+ }
+
+
+ .bar-buttons{
+  font-size: 14px;
+  font-weight: bold;
+  color: #243B81;
+  padding: 5px 10px;
+  margin: 10px;
+  background-color: #efefef;
+  border: 2px solid #243B81;
+  border-radius: 3px;
+ }
+
+ .bar-buttons:hover{
+   background-color: #243B81;
+   color: #FFFFFF;
+   border: 2px solid #FFFFFF;
+   cursor: pointer;
+   border-radius: 5px;
+ }

@@ -1,18 +1,21 @@
-<div> LOGO
+<div id="bar">
+
+  <button id="home_button" (click)="this.router.navigate([''])"></button>
 
 
-  <a style="margin-left: 15px;" href="./elections">Elections</a>
+  <a style="margin-left: 15px; font-size: 22px;" href="./elections">Elections</a>
 
+
+
+<div style="float:right;padding-top: 25px; ">
+
+  <button class="bar-buttons"  (click)="router.navigate(['profile']);" *ngIf="getStatus()" > Profile </button>
+
+  <button class="bar-buttons" (click)="router.navigate(['login']);" *ngIf="!getStatus()" > Login </button>
+
+  <button class="bar-buttons" (click)="logout()" *ngIf="getStatus()" >Log out</button>
+
+  <button class="bar-buttons" (click)="router.navigate(['admin-page']);" *ngIf="isAdmin()" > Admin </button>
 </div>
 
-<div style="float:right;">
-
-  <button (click)="router.navigate(['profile']);" *ngIf="getStatus()" > Profile </button>
-
-  <button (click)="router.navigate(['login']);" *ngIf="!getStatus()" > Login </button>
-
-  <button (click)="logout()" class="login_button" *ngIf="getStatus()" >Log out</button>
-
-  <button (click)="router.navigate(['admin-page']);" *ngIf="isAdmin()" > Admin </button>
 </div>
-

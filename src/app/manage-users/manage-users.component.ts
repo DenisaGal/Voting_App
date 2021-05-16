@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFirestore } from '@angular/fire/firestore';
-
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-manage-users',
@@ -12,7 +12,7 @@ export class ManageUsersComponent implements OnInit {
 
 	users_from_firestore: Observable<any[]>;
 
-  constructor(private db: AngularFirestore) { 
+  constructor(private db: AngularFirestore) {
   	this.users_from_firestore = this.db.collection<any>('Users').valueChanges({idField: 'id'});
   }
 
