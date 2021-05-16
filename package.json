@@ -7,9 +7,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "express_sv": "node  src/app/token_server/server.js",
-    "dev": "nodemon src/app/token_server/server.js"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
