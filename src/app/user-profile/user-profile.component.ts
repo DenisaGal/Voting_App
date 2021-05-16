@@ -119,7 +119,10 @@ export class UserProfileComponent implements OnInit {
       else{
         var isValid = this.validateCI(iCID);
         if( isValid != 0){
-
+          if(isValid == 1)
+            window.alert("CI series formatted badly");
+          if(isValid == 2)
+            window.alert("CI county doesn't match address");
         }
         else{
           this.db.collection("Users").doc(eCNP).set({
@@ -156,6 +159,27 @@ export class UserProfileComponent implements OnInit {
 	}
 
   validateCI(iCID : string): number{
+   //check format
+    let regex = /^[A-Z]{2}[0-9]{6}$/;
+    if(!regex.test(iCID))
+      return 1;
+
+    //check county
+    let county = (<HTMLInputElement>document.getElementById("county")).value;
+    let counties = new Map([
+                ["AB", "Alba"],["AR", "Arad"], ["AG", "Arges"], ["BC", "Bacau"], ["BH", "Bihor"],
+                ["BN", "Bistrita-Nasaud"],["BT", "Botosani"], ["BV", "Brasov"], ["BR", "Braila"], ["BZ", "Buzau"],
+                ["CS", "Caras-Severin"],["CJ", "Cluj"],["CT", "Constanta"],["CV", "Covasna"],["DB", "Dambovita"],
+                ["DJ", "Dolj"],["GL", "Galati"],["GJ", "Gorj"],["HR", "Harghita"],["HD", "Hunedoara"],
+                ["IL", "Ialomita"],["IS", "Iasi"],["IF", "Ilfov"],["MM", "Maramures"],["MH", "Mehedinti"],
+                ["MS", "Mures"], ["NT", "Neamt"], ["OT", "Olt"],["PH", "Prahova"],["SM", "Satu Mare"],
+                ["SJ", "Salaj"],["SB", "Sibiu"], ["SV", "Suceava"],["TR", "Teleorman"],["TM", "Timis"],
+                ["TL", "Tulcea"],["VS", "Vaslui"],["VL", "Valcea"],["VN", "Vrancea"],["B", "Bucuresti"],
+                ["CL", "Calarasi"],["GR", "Giurgiu"]]);
+    if ( counties.get(iCID.slice(0, 2)) != county)
+          return 2;
+
+
     return 0;
   }
 
