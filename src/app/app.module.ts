@@ -14,6 +14,8 @@ import { LoginComponent } from './login/login.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +38,7 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
             appId: "1:873043226372:web:958f84dbfca06c1124aa51"
             }),
     AngularFireAuthModule,
+    HttpClientModule,
     AngularFirestoreModule
   ],
   providers: [],

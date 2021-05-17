@@ -12,8 +12,10 @@ async function read(db)
 const express = require('express');
 const admin = require('firebase-admin');
 const token = require('./encryption.js');
-
+var bodyParser = require('body-parser');
 var app = express();
+
+app.use(bodyParser.json());
 
 const PORT = 5000| process.env.PORT; // server PORT
 
@@ -37,12 +39,25 @@ admin.initializeApp({
 
 var db = admin.firestore();
 
-const path= '/'; // to be completed;
+app.get('/GenerateToken', (req, res) => { 
+    console.log(req.body);
+    res.json({
+      token : token.encodeT(req.body)
+    });
+});
 
-//when the page is accessed it does something
-app.get('/', (req, res) => {
-    console.log('Hello World !');
-    res.send();
+app.get('/DecodeToken',(req,res) => {
+    var decoded = req.body
+    decoded= token.decodeT(decoded.msg);
+    console.log(decoded);
+    res.json(decoded);
+});
+
+app.get('/OneTimeVote',(req,res) =>{
+
+  
+  
+
 });
 
 app.listen(PORT,
