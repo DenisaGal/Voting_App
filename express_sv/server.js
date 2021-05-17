@@ -5,8 +5,16 @@ async function read(db)
 {
   snapshot = await db.collection('Elections').get();  //firebase. firestore. QueryDocumentSnapshot < T >
   array = snapshot.docs.map (doc => doc= doc.data().Name); // the Array of documents access with data method
-  array = array.filter( val => val === 'T_T'); 
-  console.log(array[0]);
+  array = array.filter( val => val === 'T_T') 
+  
+}
+
+function mergipls(db)
+{
+  snapshot =db.collection('Elections').get();  //firebase. firestore. QueryDocumentSnapshot < T >
+  array = snapshot.docs.map (doc => doc= doc.data().Name); // the Array of documents access with data method
+  array = array.filter( val => val === 'T_T') 
+  return array[0];
 }
 
 const express = require('express');
@@ -37,7 +45,7 @@ admin.initializeApp({
   databaseURL: "https://e-voter-d06bb-default-rtdb.europe-west1.firebasedatabase.app"
 });
 
-var db = admin.firestore();
+
 
 app.get('/GenerateToken', (req, res) => { 
     console.log(req.body);
@@ -49,14 +57,35 @@ app.get('/GenerateToken', (req, res) => {
 app.get('/DecodeToken',(req,res) => {
     var decoded = req.body
     decoded= token.decodeT(decoded.msg);
-    console.log(decoded);
     res.json(decoded);
 });
 
 app.get('/OneTimeVote',(req,res) =>{
+    
+    var db = admin.firestore();
+    
+    var temp = req.body;
+    var elec_name = temp.election_name;
+    var token_val = temp.token;
 
-  
-  
+    var isVoted= db.collection('VoteRegister').get()
+    .then((arr) => arr.docs.map(doc => doc=doc.data()))
+    .then((arr) => arr.filter(val => val.election_name === elec_name))
+    .then((arr) => arr.some((val) => {
+      x = token.decodeT(token_val);
+      y = token.decodeT(val.token);
+
+      if(JSON.stringify(x) === JSON.stringify(y))
+        return true
+        
+    }))
+    
+    const result = async () => {
+      var a = await isVoted;
+      res.send(a);
+    };
+
+    result();
 
 });
 
