@@ -4,7 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { TopBarComponent } from "../top-bar/top-bar.component";
-
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-election-details',
@@ -21,7 +21,7 @@ export class ElectionDetailsComponent implements OnInit {
 	electionEnd_Time: string = '';
 	candidates_from_firestore: Observable<any[]>;
 
-  constructor(private route: ActivatedRoute, private db: AngularFirestore) { 
+  constructor(private route: ActivatedRoute, private db: AngularFirestore, private router: Router) {
   	//First get the election id from the current route (so we can look for it in the db and get the details)
 	  const routeParams = this.route.snapshot.paramMap;
 	  const electionIdFromRoute = String(routeParams.get('electionId'));
@@ -42,7 +42,7 @@ export class ElectionDetailsComponent implements OnInit {
 	                                 			}
                                  			}
                                  });
-    //get candidates subcollection from the db 
+    //get candidates subcollection from the db
 	  this.candidates_from_firestore = this.db.collection<any>('Elections').doc(electionIdFromRoute).collection<any>('Candidates').valueChanges({idField: 'id'});
   }
 
@@ -81,7 +81,7 @@ export class ElectionDetailsComponent implements OnInit {
   vote(): void{
   	//to be implemented
   	//make it so they can't vote multiple times!!!!
-  	window.alert("Yey you voted!");
+  	this.router.navigate(['./voting-page']);
   }
 
 }
