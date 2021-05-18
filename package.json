@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "ang_server": "ng serve --proxy-config proxy.conf.json",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
@@ -22,7 +23,11 @@
     "@angular/router": "~11.2.9",
     "bootstrap": "^5.0.0",
     "crypto-js": "^4.0.0",
+    "express": "^4.17.1",
     "firebase": "^8.4.3",
+    "firebase-admin": "^9.8.0",
+    "node-rsa": "^1.1.1",
+    "nodemon": "^2.0.7",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"

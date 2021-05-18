@@ -22,6 +22,8 @@ import { ElectionDetailsComponent } from './election-details/election-details.co
 import { ForgotPwdComponent } from './forgot-pwd/forgot-pwd.component';
 import { VotingPageComponent } from './voting-page/voting-page.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +56,7 @@ import { VotingPageComponent } from './voting-page/voting-page.component';
             appId: "1:873043226372:web:958f84dbfca06c1124aa51"
             }),
     AngularFireAuthModule,
+    HttpClientModule,
     AngularFirestoreModule,
     ReactiveFormsModule
   ],

@@ -12,9 +12,9 @@ import { UserProfileComponent } from "../user-profile/user-profile.component";
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(public router: Router, private auth: AngularFireAuth) { }
+  constructor(public router: Router, private auth: AngularFireAuth) {}
 
-  ngOnInit(): void {
+  ngOnInit():void{
   }
 
   register(): void{
