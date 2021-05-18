@@ -18,6 +18,11 @@
   cursor: pointer;
  }
 
+.electionsPage{
+  position: absolute;
+  left: 50%;
+  top: 50px;
+}
 
  .bar-buttons{
   font-size: 14px;
