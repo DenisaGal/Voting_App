@@ -13,6 +13,7 @@ import { Router } from "@angular/router";
 })
 export class ElectionDetailsComponent implements OnInit {
 
+	electionId: string = '';
 	electionName: string = '';
 	electionDescription: string = '';
 	electionStart_Date: string = '';
@@ -25,8 +26,7 @@ export class ElectionDetailsComponent implements OnInit {
   	//First get the election id from the current route (so we can look for it in the db and get the details)
 	  const routeParams = this.route.snapshot.paramMap;
 	  const electionIdFromRoute = String(routeParams.get('electionId'));
-	  console.log('ID: ' + electionIdFromRoute + '\n' + this.db.collection<any>('Elections').doc(electionIdFromRoute).get());
-
+	  this.electionId = electionIdFromRoute;
 	  //get details of election from db
 		var result = this.db.collection<any>("Elections").valueChanges({idField: 'id'})
                                  .subscribe(data=>{
@@ -76,12 +76,6 @@ export class ElectionDetailsComponent implements OnInit {
    		return false;
    	}
   	return false;
-  }
-
-  vote(): void{
-  	//to be implemented
-  	//make it so they can't vote multiple times!!!!
-  	this.router.navigate(['./voting-page']);
   }
 
 }

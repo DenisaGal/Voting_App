@@ -45,6 +45,8 @@ import { HttpClientModule } from '@angular/common/http';
     RouterModule.forRoot([
       { path: '', component: ElectionsPageComponent },
       { path: 'elections/:electionId', component: ElectionDetailsComponent },
+      { path: '', component: VotingPageComponent },
+      { path: 'voting-page/:electionId', component: VotingPageComponent },
     ]),
     AppRoutingModule,
     AngularFireModule.initializeApp({
