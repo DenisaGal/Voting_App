@@ -10,6 +10,6 @@
 		<br>
 	</div>
 
-  <button *ngIf="isActive()" [disabled]="!isSignedIn()" (click)="vote()" [routerLink]="['/voting-page', electionId]">Vote in this election</button>
+  <button *ngIf="isActive()" [disabled]="!isSignedIn()" [routerLink]="['/voting-page', electionId]">Vote in this election</button>
 
 </div>

@@ -4,9 +4,7 @@
 	<div class="candidates" *ngFor="let candidate of candidates_from_firestore | async">
 		<p>Name: {{candidate.id}}<p>
 		<p>Details: {{candidate.Details}}</p>
-		<button [disabled]="!isSignedIn()" (click)="vote()">Vote</button>
+		<button type="sumbit" [disabled]="!isSignedIn()" (click)="vote(candidate.id)">Vote</button>
 		<br>
 	</div>
-
-  <!-- <button *ngIf="isActive()" [disabled]="!isSignedIn()" (click)="vote()">Vote</button> -->
 </div>

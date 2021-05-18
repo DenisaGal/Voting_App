@@ -41,8 +41,8 @@ export class VotingPageComponent implements OnInit {
   	return TopBarComponent.isSignedIn;
   }
 
-  vote(){
-  	window.alert("Yey you voted!");
+  vote(candidate_name: string): void{
+  	window.alert("Yey you voted for " + candidate_name);
   }
 
 }

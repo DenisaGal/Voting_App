@@ -78,10 +78,4 @@ export class ElectionDetailsComponent implements OnInit {
   	return false;
   }
 
-  vote(): void{
-  	//to be implemented
-  	//make it so they can't vote multiple times!!!!
-  	//this.router.navigate(['./voting-page']);
-  }
-
 }
