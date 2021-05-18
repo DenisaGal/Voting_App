@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from "@angular/router";
 
 import { AngularFireModule} from '@angular/fire';
 import { AngularFireAuthModule } from "@angular/fire/auth";
@@ -13,6 +14,13 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { LoginComponent } from './login/login.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ElectionsPageComponent } from './elections-page/elections-page.component';
+import { AddElectionComponent } from './add-election/add-election.component';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { ElectionDetailsComponent } from './election-details/election-details.component';
+import { ForgotPwdComponent } from './forgot-pwd/forgot-pwd.component';
+import { VotingPageComponent } from './voting-page/voting-page.component';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -24,10 +32,20 @@ import { HttpClientModule } from '@angular/common/http';
     MainPageComponent,
     LoginComponent,
     UserProfileComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    ElectionsPageComponent,
+    AddElectionComponent,
+    ManageUsersComponent,
+    ElectionDetailsComponent,
+    ForgotPwdComponent,
+    VotingPageComponent
   ],
   imports: [
     BrowserModule,
+    RouterModule.forRoot([
+      { path: '', component: ElectionsPageComponent },
+      { path: 'elections/:electionId', component: ElectionDetailsComponent },
+    ]),
     AppRoutingModule,
     AngularFireModule.initializeApp({
             apiKey: "AIzaSyAsmiDyTM6FSxei6Nt-XvLjFOYzsRIKGPc",
@@ -39,7 +57,8 @@ import { HttpClientModule } from '@angular/common/http';
             }),
     AngularFireAuthModule,
     HttpClientModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

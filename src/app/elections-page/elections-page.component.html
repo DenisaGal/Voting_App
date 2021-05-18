@@ -1,0 +1,18 @@
+<div class="content">
+	<h2>Ongoing elections:</h2>
+
+	<!-- Deni i tried to help u here =))
+		Awwwww.. Thanks so much >:D<-->
+	<div class="election" *ngFor="let election of elections_from_firestore | async">
+	  <h3>
+	    <a [title]="election.Name + ' details'" [routerLink]="['/elections', election.id]">
+	      {{election.Name}}
+	    </a>
+	  </h3>
+
+	  <p>{{election.Description}}</p>
+	  <p>From {{election.Start_Date}} {{election.Start_Time}} to {{election.End_Date}} {{election.End_Time}}</p>
+	  <br>
+
+	</div>
+</div>
