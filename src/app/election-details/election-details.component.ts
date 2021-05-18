@@ -27,8 +27,6 @@ export class ElectionDetailsComponent implements OnInit {
 	  const routeParams = this.route.snapshot.paramMap;
 	  const electionIdFromRoute = String(routeParams.get('electionId'));
 	  this.electionId = electionIdFromRoute;
-	  console.log('ID: ' + electionIdFromRoute + '\n' + this.db.collection<any>('Elections').doc(electionIdFromRoute).get());
-
 	  //get details of election from db
 		var result = this.db.collection<any>("Elections").valueChanges({idField: 'id'})
                                  .subscribe(data=>{
