@@ -43,6 +43,8 @@ import { VotingPageComponent } from './voting-page/voting-page.component';
     RouterModule.forRoot([
       { path: '', component: ElectionsPageComponent },
       { path: 'elections/:electionId', component: ElectionDetailsComponent },
+      { path: '', component: VotingPageComponent },
+      { path: 'voting-page/:electionId', component: VotingPageComponent },
     ]),
     AppRoutingModule,
     AngularFireModule.initializeApp({
