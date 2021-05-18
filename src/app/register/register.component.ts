@@ -12,9 +12,9 @@ import { UserProfileComponent } from "../user-profile/user-profile.component";
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(public router: Router, private auth: AngularFireAuth) { }
+  constructor(public router: Router, private auth: AngularFireAuth) {}
 
-  ngOnInit(): void {
+  ngOnInit():void{
   }
 
   register(): void{
@@ -57,6 +57,4 @@ export class RegisterComponent implements OnInit {
    }
 
     //have to check AGE!!, maybe address dar nu cred ca reusim
-    //trebuie sa vedem cum encriptam datele
-    //UPDATE vezi user profile, acolo sunt datele
 }

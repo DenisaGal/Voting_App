@@ -1,1 +1,15 @@
-<p>election-details works!</p>
+<div>
+	<h2>{{electionName}}:</h2>
+	<h4>Description: {{electionDescription}}</h4>
+	<h4>From {{electionStart_Date}} at {{electionStart_Time}} to {{electionEnd_Date}} at {{electionEnd_Time}}</h4>
+	<h4>Candidates:</h4>
+	<div class="candidates" *ngFor="let candidate of candidates_from_firestore | async">
+		<p>Name: {{candidate.id}}<p>
+		<p>Details: {{candidate.Details}}</p>
+
+		<br>
+	</div>
+
+  <button *ngIf="isActive()" [disabled]="!isSignedIn()" [routerLink]="['/voting-page', electionId]">Vote in this election</button>
+
+</div>

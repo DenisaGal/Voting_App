@@ -19,6 +19,10 @@ import { ElectionsPageComponent } from './elections-page/elections-page.componen
 import { AddElectionComponent } from './add-election/add-election.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ElectionDetailsComponent } from './election-details/election-details.component';
+import { ForgotPwdComponent } from './forgot-pwd/forgot-pwd.component';
+import { VotingPageComponent } from './voting-page/voting-page.component';
+
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -32,13 +36,17 @@ import { ElectionDetailsComponent } from './election-details/election-details.co
     ElectionsPageComponent,
     AddElectionComponent,
     ManageUsersComponent,
-    ElectionDetailsComponent
+    ElectionDetailsComponent,
+    ForgotPwdComponent,
+    VotingPageComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
       { path: '', component: ElectionsPageComponent },
       { path: 'elections/:electionId', component: ElectionDetailsComponent },
+      { path: '', component: VotingPageComponent },
+      { path: 'voting-page/:electionId', component: VotingPageComponent },
     ]),
     AppRoutingModule,
     AngularFireModule.initializeApp({
@@ -50,6 +58,7 @@ import { ElectionDetailsComponent } from './election-details/election-details.co
             appId: "1:873043226372:web:958f84dbfca06c1124aa51"
             }),
     AngularFireAuthModule,
+    HttpClientModule,
     AngularFirestoreModule,
     ReactiveFormsModule
   ],
