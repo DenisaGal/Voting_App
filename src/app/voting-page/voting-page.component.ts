@@ -18,6 +18,7 @@ import * as e from 'express';
 export class VotingPageComponent implements OnInit {
 
 	electionName: string = '';
+	realElectionName: string = '';
 	candidates_from_firestore: Observable<any[]>;
 	currentUID : string ='';
 	encPassword: String = 'unicorn';
@@ -40,6 +41,7 @@ export class VotingPageComponent implements OnInit {
                                  			for(let i = 0; i < n; i++){
 	                                 			if(electionIdFromRoute == data[i].id){
 	                                 				this.electionName = data[i].id; // numele sa fie in functie de ID ca sa putem gasi mai usor unde sa incrementam votu :)
+													this.realElectionName= data[i].Name
 	                                 			}
                                  			}
                                  });
