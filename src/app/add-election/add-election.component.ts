@@ -96,7 +96,8 @@ export class AddElectionComponent implements OnInit {
 
       for(let candidate of iCandidates){
         this.db.collection("Elections").doc(iUID).collection('Candidates').doc(candidate.candidateName).set({
-          Details: candidate.candidateDetails
+          Details: candidate.candidateDetails,
+          votenr : 0
         });
       }
     }

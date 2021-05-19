@@ -8,20 +8,60 @@ export class TokenService {
 
   constructor(private http : HttpClient) { }
 
-  generateToken()
+  generateToken(information : any) 
+  {   
+    return this.http.get('api/GenerateToken',
+    {
+      params:{
+         msg:information
+      }
+      
+    });
+  }
+
+  decodeToken(information : any)
   {
-    return this.http.get('api/GenerateToken');
+  //  return this.http.get('api/DecodeToken',
+  //   {params: 
+  //     {
+  //       name:information.token
+  //     }
   }
 
-  decodeToken()
-  {
-    return this.http.get('api/DecodeToken');
+  OneTimeVote(inf : any){
+    console.log("OneTimeVote Service : ", inf);
+    
+    
+    return this.http.get('api/OneTimeVote',{
+      params:{
+        mail:inf.email,
+        election:inf.election
+      }
+
+    });
   }
 
-  OneTimeVote(){
-    return this.http.get('api/OneTimeVote');
+  AddVote(inf : any){
+      console.log("AddVote",inf)
+      
+      return this.http.get('api/InsertToken/',  {params:{
+        mail:inf.email,
+        election:inf.election
+      }
+    })
+  }
+
+  Increment(inf : any){
+    return this.http.get('api/increment',
+      {params:{
+          election:inf.election,
+          candidate:inf.candidate 
+        }
+        
+      }
+    )
   }
 
 
-
+  
 }
