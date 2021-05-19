@@ -24,6 +24,7 @@ export class VotingPageComponent implements OnInit {
 	public static emailAddress: string = '';
 	vote_data: any ='';
 	test : any =''
+	incr : any =''
 
   constructor(private route: ActivatedRoute, private db: AngularFirestore , private service : TokenService) { 
   	//First get the election id from the current route (so we can look for it in the db and get the details)
@@ -38,7 +39,7 @@ export class VotingPageComponent implements OnInit {
                                  			let n = data.length;
                                  			for(let i = 0; i < n; i++){
 	                                 			if(electionIdFromRoute == data[i].id){
-	                                 				this.electionName = data[i].id; // numele sa fie in functie de ID ca sa putem gasi mai usor unde sa punem votu :)
+	                                 				this.electionName = data[i].id; // numele sa fie in functie de ID ca sa putem gasi mai usor unde sa incrementam votu :)
 	                                 			}
                                  			}
                                  });
@@ -85,10 +86,18 @@ export class VotingPageComponent implements OnInit {
 			{
 				if (info === false)
 				{
+					console.log(info)
+					
 					this.service.AddVote(this.vote_data).subscribe()
 					{
 						() =>{}
 					}
+
+					this.service.Increment(this.incr).subscribe()
+					{
+						() => {}
+					}
+
 
 					window.alert("Voted Succesfully");
 				}
@@ -107,7 +116,15 @@ export class VotingPageComponent implements OnInit {
         "election": this.electionName
       }
 	
+	const incr_detail:JSON = <JSON><unknown>{
+        "candidate": candidate_name,
+        "election": this.electionName
+      }
+	
+	 // console.log(incr_detail);
+	
 	this.vote_data=msg;
+	this.incr=incr_detail
 	this.OneTimeVoteAPI(msg);
 	
   	

@@ -42,14 +42,26 @@ export class TokenService {
   }
 
   AddVote(inf : any){
-    console.log("AddVote",inf)
-    
-    return this.http.get('api/InsertToken/',  {params:{
-      mail:inf.email,
-      election:inf.election
-    }
-  })
-
-
+      console.log("AddVote",inf)
+      
+      return this.http.get('api/InsertToken/',  {params:{
+        mail:inf.email,
+        election:inf.election
+      }
+    })
   }
+
+  Increment(inf : any){
+    return this.http.get('api/increment',
+      {params:{
+          election:inf.election,
+          candidate:inf.candidate 
+        }
+        
+      }
+    )
+  }
+
+
+  
 }

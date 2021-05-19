@@ -21,6 +21,7 @@ const express = require('express');
 const admin = require('firebase-admin');
 const token = require('./encryption.js');
 var bodyParser = require('body-parser');
+const { firestore } = require('firebase-admin');
 var app = express();
 
 app.use(bodyParser.json());
@@ -96,7 +97,7 @@ app.get('/InsertToken/',(req,res) =>{
     token:token.encodeT(req.query.mail)
   }
   
-  console.log("In interior la insert token ",vot)
+  //console.log("In interior la insert token ",vot)
   var ceva = admin.firestore().collection('VoteRegister').doc().set(vot);
 
   res.send("Voted Succesfully");
@@ -104,18 +105,27 @@ app.get('/InsertToken/',(req,res) =>{
 
 app.get('/increment',(req,res) =>{
   var db = admin.firestore();
-  var incrVote = db.collection('Elections/T_T-2021-05-10/Candidates').get()
+
+  var election = req.query.election
+  var candidate = req.query.candidate
+
+  //console.log(election + ' ' + candidate)
+
+  var firestore_pathing = 'Elections/' + election + '/Candidates'  
+  //console.log(firestore_pathing);
+
+  var incrVote = db.collection(firestore_pathing).get()
     .then((arr) => arr.forEach(doc => {
       
-      if(doc.id === 'k')
+      if(doc.id === candidate)
       { 
         value = doc.data().votenr + 1
-
+        
         res = {
-
+          votenr:value
         }
 
-        var ceva = admin.firestore().collection('Elections/T_T-2021-05-10/Candidates').doc().set();
+        var ceva = admin.firestore().collection(firestore_pathing).doc(candidate).update(res)
       }
       
 
