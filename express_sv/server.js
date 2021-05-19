@@ -45,12 +45,11 @@ admin.initializeApp({
   databaseURL: "https://e-voter-d06bb-default-rtdb.europe-west1.firebasedatabase.app"
 });
 
-
-
 app.get('/GenerateToken', (req, res) => { 
-    console.log(req.body);
+    var obj = req.query.msg
+    console.log(obj)
     res.json({
-      token : token.encodeT(req.body)
+       token : token.encodeT(obj)
     });
 });
 
@@ -61,21 +60,19 @@ app.get('/DecodeToken',(req,res) => {
 });
 
 app.get('/OneTimeVote',(req,res) =>{
-    
+   // checks if the user already voted on a certain election 
     var db = admin.firestore();
+    var email = req.query.mail;
+    var election = req.query.election;
     
-    var temp = req.body;
-    var elec_name = temp.election_name;
-    var token_val = temp.token;
-
     var isVoted= db.collection('VoteRegister').get()
     .then((arr) => arr.docs.map(doc => doc=doc.data()))
-    .then((arr) => arr.filter(val => val.election_name === elec_name))
+    .then((arr) => arr.filter(val => val.election === election))
     .then((arr) => arr.some((val) => {
-      x = token.decodeT(token_val);
+      x = req.query.mail;
       y = token.decodeT(val.token);
 
-      if(JSON.stringify(x) === JSON.stringify(y))
+      if(x === y)
         return true
         
     }))
@@ -86,8 +83,24 @@ app.get('/OneTimeVote',(req,res) =>{
     };
 
     result();
+    
 
 });
+
+app.get('/InsertToken/',(req,res) =>{
+  
+  
+  var vot = 
+  {
+    election:req.query.election,
+    token:token.encodeT(req.query.mail)
+  }
+  
+  console.log("In interior la insert token ",vot)
+  var ceva = admin.firestore().collection('VoteRegister').doc().set(vot);
+
+  res.send("Voted Succesfully");
+})
 
 app.listen(PORT,
   () => console.log(`Server started on port ${PORT}`));
