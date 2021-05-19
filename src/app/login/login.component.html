@@ -1,12 +1,17 @@
 <div id="body" >
 
-  <label for="email">Email address:</label><br>
-  <input id="email" type="text" name="email" placeholder="Contact email" required><br>
+  <div class="m-5">
+    <label for="email" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="email" placeholder="Contact email" required>
+  </div>
 
-  <label for="password">Password</label><br>
-  <input id="password" type="password" name="password" placeholder="Enter your Password" required><br><br>
+  <div class="m-5">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" class="form-control" id="password" placeholder="Enter your Password" required><br>
+  </div>
 
-  <button (click)="login()"> Log In </button><br><br>
+  <div class="mx-5">
+    <button (click)="login()" class="btn btn-primary"> Log In </button><br><br>
 
   <a routerLink="/register">Haven't registered yet?</a><br>
   <a href="./forgot-pwd">Forgot your password?</a><br>    <!-- to do href-->
