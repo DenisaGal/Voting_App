@@ -1,18 +1,24 @@
 <div id="body" >
+  <h2>Log in to vote!</h2>
 
-  <div class="m-5">
-    <label for="email" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="email" placeholder="Contact email" required>
+  <div class="form">
+    <input type="email" id="email"  required>
+    <label for="email" class="label-name">
+      <span class="content-name"> Email address</span>
+    </label>
   </div>
 
-  <div class="m-5">
-    <label for="password" class="form-label">Password</label>
-    <input type="password" class="form-control" id="password" placeholder="Enter your Password" required><br>
+  <div class="form">
+    <input type="password" id="password" required>
+    <label for="password" class="label-name">
+      <span class="content-name"> Password</span>
+    </label>
   </div>
 
   <div class="mx-5">
     <button (click)="login()" class="btn btn-primary"> Log In </button><br><br>
 
-  <a routerLink="/register">Haven't registered yet?</a><br>
-  <a href="./forgot-pwd">Forgot your password?</a><br>    <!-- to do href-->
+    <a routerLink="/register">Haven't registered yet?</a><br>
+    <a href="./forgot-pwd">Forgot your password?</a><br>    <!-- to do href-->
+  </div>
 </div>

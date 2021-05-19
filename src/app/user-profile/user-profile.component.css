@@ -1,0 +1,42 @@
+#body {
+  justify-content: space-around;
+  align-items: center;
+  font-family: sans-serif;
+  margin-left: 10%;
+}
+
+button{
+  margin-left: 2%;
+}
+
+label {
+  margin-right: 5px;
+}
+
+.sec-label{
+  margin-left: 3%;
+}
+
+.gen-choices{
+  margin-left: 1%;
+}
+
+input[type=text]{
+    width:10%;
+    border:2px solid #aaa;
+    border-radius:8px;
+    margin:8px 0;
+    outline:none;
+    padding:4px;
+    box-sizing:border-box;
+    transition:.5s;
+  }
+
+  input:focus{
+    border-color:dodgerBlue;
+    box-shadow:0 0 8px 0 dodgerBlue;
+  }
+
+  input:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0px 1000px white inset;
+  }

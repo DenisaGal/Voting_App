@@ -8,7 +8,7 @@
   height: 100px;
   width: 200px;
 	border: none;
-	background-image: url("./votelogo2.0.png");
+	background-image: url("./votelogo2.png");
 	background-size: cover;
 	margin-right: 20px;
 }
@@ -20,8 +20,8 @@
 
 .electionsPage{
   position: absolute;
-  left: 50%;
-  top: 50px;
+  left: 200;
+  top: 37px;
 }
 
  .bar-buttons{
