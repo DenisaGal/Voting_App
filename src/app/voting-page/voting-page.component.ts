@@ -23,12 +23,14 @@ export class VotingPageComponent implements OnInit {
 	encPassword: String = 'unicorn';
 	public static emailAddress: string = '';
 	vote_data: any ='';
-	
+	test : any =''
 
   constructor(private route: ActivatedRoute, private db: AngularFirestore , private service : TokenService) { 
   	//First get the election id from the current route (so we can look for it in the db and get the details)
 		const routeParams = this.route.snapshot.paramMap;
 		const electionIdFromRoute = String(routeParams.get('electionId'));
+
+		this.test = electionIdFromRoute;
 
 	  //get details of election from db
 		var result = this.db.collection<any>("Elections").valueChanges({idField: 'id'})
@@ -36,10 +38,12 @@ export class VotingPageComponent implements OnInit {
                                  			let n = data.length;
                                  			for(let i = 0; i < n; i++){
 	                                 			if(electionIdFromRoute == data[i].id){
-	                                 				this.electionName = data[i].Name;
+	                                 				this.electionName = data[i].id; // numele sa fie in functie de ID ca sa putem gasi mai usor unde sa punem votu :)
 	                                 			}
                                  			}
                                  });
+
+	 
     //get candidates subcollection from the db
 	  this.candidates_from_firestore = this.db.collection<any>('Elections').doc(electionIdFromRoute).collection<any>('Candidates').valueChanges({idField: 'id'});
 				  							
@@ -51,7 +55,6 @@ export class VotingPageComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		
 	}
 
 	isSignedIn(): boolean{
@@ -107,7 +110,7 @@ export class VotingPageComponent implements OnInit {
 	this.vote_data=msg;
 	this.OneTimeVoteAPI(msg);
 	
-  	//window.alert("Yey you voted for " + candidate_name);
+  	
   }
 
   

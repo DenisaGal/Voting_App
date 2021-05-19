@@ -102,5 +102,29 @@ app.get('/InsertToken/',(req,res) =>{
   res.send("Voted Succesfully");
 })
 
+app.get('/increment',(req,res) =>{
+  var db = admin.firestore();
+  var incrVote = db.collection('Elections/T_T-2021-05-10/Candidates').get()
+    .then((arr) => arr.forEach(doc => {
+      
+      if(doc.id === 'k')
+      { 
+        value = doc.data().votenr + 1
+
+        res = {
+
+        }
+
+        var ceva = admin.firestore().collection('Elections/T_T-2021-05-10/Candidates').doc().set();
+      }
+      
+
+    }));
+   
+
+  res.send()
+
+});
+
 app.listen(PORT,
   () => console.log(`Server started on port ${PORT}`));
