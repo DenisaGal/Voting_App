@@ -1,5 +1,5 @@
-<div>
-	<h2>{{realElectionName}}</h2>
+<div id="body">
+	<h2 style="font-family: Times New Roman">{{realElectionName}}</h2>
 	<h4>Candidates:</h4>
 	<div class="candidates" *ngFor="let candidate of candidates_from_firestore | async">
 		<p>Name: {{candidate.id}}<p>
