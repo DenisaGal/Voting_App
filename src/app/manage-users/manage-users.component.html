@@ -5,7 +5,8 @@
 	  <h3 style="font-family: Times New Roman">{{user.id}}</h3>
 	  <p>Name: {{user.First_Name}} {{user.Last_Name}}</p>
 	  <p>Address: {{user.City}}</p>
-	  <button class="btn btn-success" (click)="make_admin(user.id)">Make Admin</button>
+	  <button class="btn btn-success" *ngIf="!user.Admin" (click)="make_admin(user.id)">Make Admin</button>
+    <button class="btn " *ngIf="user.Admin" (click)="remove_admin(user.id)">Remove Admin</button>
 	  <br>
 
 	</div>

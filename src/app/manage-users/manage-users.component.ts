@@ -25,4 +25,10 @@ export class ManageUsersComponent implements OnInit {
                                { merge: true }); //altfel sterge valorile celorlalte campuri.. jeez
   }
 
+  remove_admin(userid: string): void{
+    this.db.collection<any>("Users").doc(userid).set({
+                              Admin: false},
+                               { merge: true });
+  }
+
 }
