@@ -17,7 +17,7 @@
 
   <button *ngIf="isActive()" [disabled]="!isSignedIn()" [routerLink]="['/voting-page', electionId]" class="btn btn-primary">Vote in this election</button><br>
 
-  <button *ngIf="isActive()"   [routerLink]="['/results', electionId]">See results</button>
+  <button *ngIf="isActive()"   [routerLink]="['/results', electionId]" class="btn btn-primary">See results</button>
 
 
 </div>
