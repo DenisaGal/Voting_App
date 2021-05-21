@@ -6,7 +6,7 @@ import { from, Observable } from 'rxjs';
 import { TopBarComponent } from "../top-bar/top-bar.component";
 import { TokenService } from "../token.service"
 import { UserProfileComponent } from "../user-profile/user-profile.component"
-import * as e from 'express';
+//import * as e from 'express';
 
 
 
@@ -23,9 +23,9 @@ export class VotingPageComponent implements OnInit {
 	encPassword: String = 'unicorn';
 	public static emailAddress: string = '';
 	vote_data: any ='';
-	
 
-  constructor(private route: ActivatedRoute, private db: AngularFirestore , private service : TokenService) { 
+
+  constructor(private route: ActivatedRoute, private db: AngularFirestore , private service : TokenService) {
   	//First get the election id from the current route (so we can look for it in the db and get the details)
 		const routeParams = this.route.snapshot.paramMap;
 		const electionIdFromRoute = String(routeParams.get('electionId'));
@@ -42,16 +42,16 @@ export class VotingPageComponent implements OnInit {
                                  });
     //get candidates subcollection from the db
 	  this.candidates_from_firestore = this.db.collection<any>('Elections').doc(electionIdFromRoute).collection<any>('Candidates').valueChanges({idField: 'id'});
-				  							
+
 	}
 
-  
+
     getEmailAddress(): string {
 		return UserProfileComponent.emailAddress;
 	}
 
 	ngOnInit(): void {
-		
+
 	}
 
 	isSignedIn(): boolean{
@@ -59,8 +59,8 @@ export class VotingPageComponent implements OnInit {
 	}
 
 	generateTokenAPI(inf : any) : any
-	{	 
-		
+	{
+
 		this.service.generateToken(inf).subscribe(
 			(val) =>{
 				console.log(val);
@@ -78,7 +78,7 @@ export class VotingPageComponent implements OnInit {
 	{
 
 		this.service.OneTimeVote(inf).subscribe(
-			info => 
+			info =>
 			{
 				if (info === false)
 				{
@@ -98,18 +98,18 @@ export class VotingPageComponent implements OnInit {
 	}
 
   vote(candidate_name: string): void{
-	
+
 	const msg:JSON = <JSON><unknown>{
         "email": this.getEmailAddress(),
         "election": this.electionName
       }
-	
+
 	this.vote_data=msg;
 	this.OneTimeVoteAPI(msg);
-	
+
   	//window.alert("Yey you voted for " + candidate_name);
   }
 
-  
+
 
 }
