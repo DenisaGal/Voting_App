@@ -9,6 +9,7 @@ import { UserProfileComponent } from "../user-profile/user-profile.component"
 
 
 
+
 @Component({
   selector: 'app-voting-page',
   templateUrl: './voting-page.component.html',
@@ -23,6 +24,7 @@ export class VotingPageComponent implements OnInit {
 	encPassword: String = 'unicorn';
 	public static emailAddress: string = '';
 	vote_data: any ='';
+
 	test : any =''
 	incr : any =''
 
@@ -57,6 +59,7 @@ export class VotingPageComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
+
 	}
 
 	isSignedIn(): boolean{
@@ -117,6 +120,7 @@ export class VotingPageComponent implements OnInit {
         "election": this.electionName
       }
 
+
 	const incr_detail:JSON = <JSON><unknown>{
         "candidate": candidate_name,
         "election": this.electionName
@@ -127,6 +131,8 @@ export class VotingPageComponent implements OnInit {
 	this.vote_data=msg;
 	this.incr=incr_detail
 	this.OneTimeVoteAPI(msg);
+
+  	//window.alert("Yey you voted for " + candidate_name);
 
 
   }
