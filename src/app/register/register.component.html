@@ -1,18 +1,35 @@
 
 <div id="body" >
-    <label for="email">Email address:</label><br>
-    <input id="email" type="text" name="email" placeholder="Contact email" required><br>
 
-    <label for="password">Password:</label><br>
-    <input id="password" type="password" name="password" placeholder="Account password" required>
-    <input id="confirm" type="password" name="confirm" placeholder="Confirm password" required><br><br>
+  <h2 style="font-family: Times New Roman">Register to vote!</h2>
+
+  <div class="form">
+    <input id="email" type="text" name="email" required>
+    <label for="email" class="label-name">
+      <span class="content-name"> Email address</span>
+    </label>
+  </div>
+
+  <div class="form">
+    <input id="password" type="password" name="password" required>
+    <label for="password" class="label-name">
+      <span class="content-name"> Password</span>
+    </label>
+  </div>
+
+  <div class="form">
+    <input id="confirm" type="password" name="confirm" required>
+    <label for="confirm" class="label-name">
+      <span class="content-name"> Confirm Password</span>
+    </label>
+  </div><br><br>
 
     <!-- <p>After completing your profile for registering, future logins will require your CNP and password.</p><br> -->
 
    <!-- poate bagam aici ceva smecherie dinaia cu accept termenii si conditiile=)) -->
    <!-- poate ma insel dar cred ca merge facut doar un simplu check box pe care il pui ca mandatory sa fie required (trebuie facut un text pentru asta tho ca momentan nu avem termeni si conditii) -->
-    <button (click)="register()"> Register </button><br><br>
+    <button (click)="register()" class="btn btn-primary"> Register </button>
 
-    <a routerLink="/login">Already registered?</a><br>
+    <a routerLink="/login" style="color: #007bff;">Already registered?</a><br>
 
 </div>

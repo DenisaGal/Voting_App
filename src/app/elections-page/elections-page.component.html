@@ -1,13 +1,13 @@
 <div class="alert alert-warning" role="alert">
   Please note that you can only vote for one person!!!
 </div>
-<div class="p-5">
-	<h2>Ongoing elections:</h2><br>
+<div id="body">
+	<h2 style="font-family: Times New Roman">Ongoing elections:</h2><br>
 
 	<!-- Deni i tried to help u here =))
 		Awwwww.. Thanks so much >:D<-->
 	<div class="election" *ngFor="let election of elections_from_firestore | async">
-	  <h3>
+	  <h3 style="font-family: Times New Roman">
 	    <a [title]="election.Name + ' details'" [routerLink]="['/elections', election.id]">
 	      {{election.Name}}
 	    </a>

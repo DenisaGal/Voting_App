@@ -1,0 +1,11 @@
+.content {
+  justify-content: space-around;
+  align-items: center;
+  font-family: sans-serif;
+  margin-left: 10%;
+  font-family: "Times New Roman";
+}
+
+.user {
+  margin-bottom: 1%;
+}

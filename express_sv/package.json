@@ -12,7 +12,10 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "crypto-js": "^4.0.0",
+<<<<<<< HEAD
     "cryptojs": "^2.5.3",
+=======
+>>>>>>> 6f1306479093fbd891edaded8aabcc35b2d1abe7
     "express": "^4.17.1",
     "firebase-admin": "^9.8.0",
     "node-rsa": "^1.1.1",
