@@ -1,11 +1,11 @@
 <div class="content">
-	<h2>Current user profiles:</h2>
+	<h2 style="font-family: Times New Roman">Current user profiles:</h2>
 
 	<div class="user" *ngFor="let user of users_from_firestore | async"><br>
-	  <h3>{{user.id}}</h3>
+	  <h3 style="font-family: Times New Roman">{{user.id}}</h3>
 	  <p>Name: {{user.First_Name}} {{user.Last_Name}}</p>
 	  <p>Address: {{user.City}}</p>
-	  <button>Make Admin</button>
+	  <button class="btn btn-success">Make Admin</button>
 	  <br>
 
 	</div>

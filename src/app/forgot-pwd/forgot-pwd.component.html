@@ -1,8 +1,13 @@
 <div id="content">
-  <h1>Forgotten password?</h1>
+  <h1 style="font-family: Times New Roman">Forgotten password?</h1>
 
-  <input id="emailfield" type="text" name="username" placeholder="Enter your email" required><br>
-  <button (click)="sendMail()">
+  <div class="form">
+    <input id="emailfield" type="text" name="username" required>
+    <label for="emailfield" class="label-name">
+      <span class="content-name"> Enter your Email</span>
+    </label>
+  </div>
+  <button (click)="sendMail()" class="btn btn-primary">
     Send me the E-mail!
   </button>
 </div>
