@@ -21,8 +21,8 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ElectionDetailsComponent } from './election-details/election-details.component';
 import { ForgotPwdComponent } from './forgot-pwd/forgot-pwd.component';
 import { VotingPageComponent } from './voting-page/voting-page.component';
-
 import { HttpClientModule } from '@angular/common/http';
+import { ElectionResultsComponent } from './election-results/election-results.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,8 @@ import { HttpClientModule } from '@angular/common/http';
     ManageUsersComponent,
     ElectionDetailsComponent,
     ForgotPwdComponent,
-    VotingPageComponent
+    VotingPageComponent,
+    ElectionResultsComponent
   ],
   imports: [
     BrowserModule,
