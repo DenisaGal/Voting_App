@@ -31,4 +31,14 @@ export class ManageUsersComponent implements OnInit {
                                { merge: true });
   }
 
+
+  delete_user(userid: string): void{
+   let result = confirm("Are you sure you want to delete this user from database?");
+   if(result)
+      this.db.collection<any>("Users").doc(userid).delete().then(() => {
+              console.log("Document successfully deleted!");
+            }).catch((error) => {
+                console.error("Error removing document: ", error);
+            });
+  }
 }
