@@ -5,8 +5,16 @@
   align-items: center;
   flex-direction: column;
   font-family: "Times New Roman";
+  margin-top: 5%;
 }
 
 .candidates {
   margin-top: 1%;
+}
+
+.candidate_info{
+  display: flex;
+    justify-content: space-around;
+    align-items: left;
+    flex-direction: column;
 }
