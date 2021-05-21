@@ -10,6 +10,7 @@ import { AddElectionComponent } from './add-election/add-election.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ForgotPwdComponent } from './forgot-pwd/forgot-pwd.component';
 import { VotingPageComponent } from './voting-page/voting-page.component';
+import { ElectionResultsComponent } from './election-results/election-results.component';
 
 const routes: Routes = [
 {path: 'admin-page', component: AdminPageComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
 {path: 'profile', component: UserProfileComponent },
 {path: 'add-election', component: AddElectionComponent },
 {path: 'forgot-pwd', component: ForgotPwdComponent },
+{path: 'results/:electionId', component: ElectionResultsComponent },
 {path: 'manage-users', component: ManageUsersComponent },
 {path: 'voting-page', component: VotingPageComponent }];
 
