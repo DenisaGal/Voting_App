@@ -12,4 +12,7 @@
 
   <button *ngIf="isActive()" [disabled]="!isSignedIn()" [routerLink]="['/voting-page', electionId]">Vote in this election</button>
 
+  <p *ngIf="!isSignedIn()" > Please register and sign in to vote. </p>
+  <p *ngIf="!isActive()" > Voting will be open when the election starts. </p>
+
 </div>

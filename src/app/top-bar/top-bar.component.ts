@@ -36,6 +36,19 @@ export class TopBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  this.db.collection<any>("Users").valueChanges()
+                                        .subscribe( data=>
+                                           {
+                                               var i;
+                                               for ( i = 0; i < data.length; i++){
+                                                 var decrypted = CryptoJS.AES.decrypt(data[i].Email_Address.trim(), this.encPassword.trim()).toString(CryptoJS.enc.Utf8);
+                                                 if(decrypted == UserProfileComponent.emailAddress){
+                                                   if(data[i].Admin == true){
+                                                      (<HTMLInputElement>document.getElementById("admin-button")).style.display = "inline";
+                                                   }
+                                                 }
+                                               }
+                                           });
   }
 
   getStatus(): boolean {
@@ -84,10 +97,12 @@ export class TopBarComponent implements OnInit {
      return false;
   }
 
+
   public logout(): void {
     this.auth.signOut().then(() => {
           TopBarComponent.isSignedIn = false;
           UserProfileComponent.emailAddress = "";
+          (<HTMLInputElement>document.getElementById("admin-button")).style.display = "none";
           this.router.navigate(['./']);
         }).catch((error) => {
           window.alert("Something went wrong :(");
