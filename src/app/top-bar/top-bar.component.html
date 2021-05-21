@@ -10,13 +10,15 @@
 
 <div style="float:right;padding-top: 25px; ">
 
+
+  <button class="bar-buttons" id="admin-button" style="display: none;" (click)="router.navigate(['admin-page']);"  > Admin </button>
+
   <button class="bar-buttons" (click)="router.navigate(['login']);" *ngIf="!getStatus()" > Login </button>
 
   <button class="bar-buttons" (click)="logout()" *ngIf="getStatus()" >Log out</button>
 
  <!-- <button class="bar-buttons" (click)="router.navigate(['admin-page']);" *ngIf="isAdmin()" > Admin </button>-->
 
-  <button class="bar-buttons" id="admin-button" style="display: none;" (click)="router.navigate(['admin-page']);"  > Admin </button>
 </div>
 
 </div>

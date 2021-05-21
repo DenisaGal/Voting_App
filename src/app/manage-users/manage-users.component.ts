@@ -19,4 +19,10 @@ export class ManageUsersComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  make_admin(userid: string): void{
+    this.db.collection<any>("Users").doc(userid).set({
+                              Admin: true},
+                               { merge: true }); //altfel sterge valorile celorlalte campuri.. jeez
+  }
+
 }
