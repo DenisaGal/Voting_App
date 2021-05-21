@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { TopBarComponent } from "../top-bar/top-bar.component";
 import { Router } from "@angular/router";
-import * as CanvasJS from './canvasjs.min';
+//import * as CanvasJS from './canvasjs.min';
 
 @Component({
   selector: 'app-election-results',
