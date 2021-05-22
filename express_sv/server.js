@@ -22,6 +22,7 @@ const admin = require('firebase-admin');
 const token = require('./encryption.js');
 var bodyParser = require('body-parser');
 const { firestore } = require('firebase-admin');
+const e = require('express');
 var app = express();
 
 app.use(bodyParser.json());
@@ -106,15 +107,15 @@ app.get('/InsertToken/',(req,res) =>{
 app.get('/increment',(req,res) =>{
   var db = admin.firestore();
 
-  var election = req.query.election
-  var candidate = req.query.candidate
+   var election = req.query.election
+   var candidate = req.query.candidate
 
-  //console.log(election + ' ' + candidate)
+  // console.log(election + ' ' + candidate)
 
-  var firestore_pathing = 'Elections/' + election + '/Candidates'  
+   var firestore_pathing = 'Elections/' + election + '/Candidates'  
   //console.log(firestore_pathing);
 
-  var incrVote = db.collection(firestore_pathing).get()
+  var incrVote = db.collection(firestore_pathing).get() // increment vote for candidate
     .then((arr) => arr.forEach(doc => {
       
       if(doc.id === candidate)
@@ -126,11 +127,19 @@ app.get('/increment',(req,res) =>{
         }
 
         var ceva = admin.firestore().collection(firestore_pathing).doc(candidate).update(res)
-      }
-      
 
-    }));
-   
+        
+      }
+    }))
+  
+  var addTotal= db.collection('Elections/').get() // incr total votes nr of certain election
+  .then((arr) => arr.forEach( document => {
+      
+      if(document.id === election) // election
+        up = {nrofvotes:document.data().nrofvotes + 1}
+        admin.firestore().collection('Elections/').doc(election).update(up)
+      }
+  ));
 
   res.send()
 

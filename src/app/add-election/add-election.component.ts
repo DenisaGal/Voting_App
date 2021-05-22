@@ -85,7 +85,8 @@ export class AddElectionComponent implements OnInit {
           Start_Date: iStart_Date,
           Start_Time: iStart_Time,
           End_Date: iEnd_Date,
-          End_Time: iEnd_Time
+          End_Time: iEnd_Time,
+          nrofvotes: 0
       })
       .then(() => {
           console.log("Election successfully added!");
