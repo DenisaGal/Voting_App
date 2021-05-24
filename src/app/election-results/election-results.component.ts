@@ -5,7 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { TopBarComponent } from "../top-bar/top-bar.component";
 import { Router } from "@angular/router";
-//import * as CanvasJS from './canvasjs.min';
+declare const CanvasJS: any;
+
 
 @Component({
   selector: 'app-election-results',
@@ -22,6 +23,10 @@ export class ElectionResultsComponent implements OnInit {
   electionEnd_Date: string = '';
   electionEnd_Time: string = '';
   candidates_from_firestore: Observable<any[]>;
+  // rezultate : Observable<any[]>;
+  datapoints : { y: number, label: string }[]=[];
+  nrofvotes : number = 0;
+  
 
 
   constructor(private route: ActivatedRoute, private db: AngularFirestore, private router: Router) {
@@ -40,14 +45,42 @@ export class ElectionResultsComponent implements OnInit {
     																					this.electionStart_Time = data[i].Start_Time;
     																					this.electionEnd_Date = data[i].End_Date;
     																					this.electionEnd_Time = data[i].End_Time;
+                                              this.nrofvotes=data[i].nrofvotes;
+                                              
     	                                 			}
                                      			}
                                      });
         //get candidates subcollection from the db
     	  this.candidates_from_firestore = this.db.collection<any>('Elections').doc(electionIdFromRoute).collection<any>('Candidates').valueChanges({idField: 'id'});
+
+        var result= this.db.collection<any>('Elections').doc(electionIdFromRoute).collection<any>('Candidates').valueChanges({idField: 'id'}).subscribe(
+          data => {
+            let n =data.length;
+            for(let i = 0; i < n; i++){
+              this.datapoints.push({y:data[i].votenr,label:data[i].id});
+            }
+
+
+          });
+        
+
+        
   }
 
   ngOnInit(): void {
+    let chart = new CanvasJS.Chart("chartContainer", {
+      animationEnabled: true,
+      exportEnabled: true,
+      title: {
+        text: "Results :"
+      },
+      data: [{
+        type: "column",
+        dataPoints: this.datapoints
+      }]
+    });
+      
+    chart.render();
   }
 
 }
