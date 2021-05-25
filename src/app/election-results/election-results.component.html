@@ -1,15 +1,20 @@
 
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <div id="body">
-  <h2 style="font-family: Times New Roman">{{electionName}}</h2>
-  <h4 style="font-family: Times New Roman">Description: {{electionDescription}}</h4>
-  <h4 style="font-family: Times New Roman">From {{electionStart_Date}} at {{electionStart_Time}} to {{electionEnd_Date}} at {{electionEnd_Time}}</h4>
-  
+  <h2 style=" font-weight: 900">{{electionName}}</h2><br>
+  <h4 style="font-family: Times New Roman">Description: {{electionDescription}}</h4><br>
+  <h4 style="font-family: Times New Roman">
+    From <span style="color: #59B200">{{electionStart_Date}}</span>
+    at <span style="color: #59B200">{{electionStart_Time}}</span>
+    to <span style="color: #59B200">{{electionEnd_Date}}</span>
+    at <span style="color: #59B200">{{electionEnd_Time}}</span>
+  </h4><br>
+
   <div >
     <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-  </div>
-  
-  <div>Total nr of voters: {{nrofvotes}}</div>
+  </div><br>
 
-  
+  <div style="font-weight: 450">Total nr of voters: {{nrofvotes}}</div>
+
+
 </div>
