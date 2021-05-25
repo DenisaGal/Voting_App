@@ -1,11 +1,11 @@
 <div id="body">
-	<h2 style="font-family: Times New Roman; font-weight: 900">{{realElectionName}}</h2>
+	<h2 style=" font-weight: 900">{{realElectionName}}</h2>
 	<h4>Candidates:</h4>
 	<div class="candidates" *ngFor="let candidate of candidates_from_firestore | async">
-		<p>Name: {{candidate.id}}<p>
+    <p>Name: {{candidate.id}}</p>
 		<p>Details: {{candidate.Details}}</p>
 		 <!---- <p>User: {{currentUID}}</p> -->
 		<button type="sumbit" [disabled]="!isSignedIn()" (click)="vote(candidate.id)" class="btn btn-primary">Vote</button>
-		<br>
+
 	</div>
 </div>

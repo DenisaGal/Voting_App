@@ -7,14 +7,17 @@
 	<!-- Deni i tried to help u here =))
 		Awwwww.. Thanks so much >:D<-->
 	<div class="election" *ngFor="let election of elections_from_firestore | async">
-	  <h3 style="font-family: Times New Roman">
+	  <h3 style="font-weight: 900">
 	    <a [title]="election.Name + ' details'" [routerLink]="['/elections', election.id]">
 	      {{election.Name}}
 	    </a>
 	  </h3>
 
 	  <p>{{election.Description}}</p>
-	  <p>From [{{election.Start_Date}}] {{election.Start_Time}} to [{{election.End_Date}}] {{election.End_Time}}</p>
+    <p>From <span style="color: #59B200">[{{election.Start_Date}}]</span>
+      <span style="color: #59B200">{{election.Start_Time}}</span>
+      to <span style="color: #59B200">[{{election.End_Date}}]</span>
+      <span style="color: #59B200">{{election.End_Time}} </span></p>
 	  <br>
 	</div>
 </div>
