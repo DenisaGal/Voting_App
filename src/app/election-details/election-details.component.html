@@ -8,19 +8,25 @@
     at <span style="color: #59B200">{{electionEnd_Time}}</span></h4>
   <br><br>
 	<h2 style="font-family: Times New Roman" style="font-weight: 900;">Candidates:</h2>
-  <div class="candidate_info">
+
 	<div class="candidates" *ngFor="let candidate of candidates_from_firestore | async">
-		<p style="font-weight: 900;">Name:
-      <span style="color: #667943">{{candidate.id}}</span><p>
-		<p>Details:
-    <span style="color: #667943">{{candidate.Details}}</span></p>
-    <img src="{{candidate.Picture}}">
+
+    <div class="row">
+      <img src="{{candidate.Picture}}" class="rounded-circle">
+        <div class="candinfo">
+        <p style="font-weight: 900;font-size: 25px">Name:
+          <span style="color: #667943">{{candidate.id}}</span><p>
+        <p style="font-size: 25px">Details:
+        <span style="color: #667943;">{{candidate.Details}}</span></p>
+          </div>
+    </div><br>
 
 
-	</div>
+
   </div>
+  <br>
 
-  <p *ngIf="!isSignedIn()" style="color: #999999"> Please register and sign in to vote. </p>
+  <p *ngIf="!isSignedIn()" style="color: #999999; font-size: 25px"> Please register and sign in to vote. </p>
   <p *ngIf="!isActive()" > Voting will be open when the election starts. </p>
 
   <button *ngIf="isActive()" [disabled]="!isSignedIn()" [routerLink]="['/voting-page', electionId]" class="btn btn-primary">Vote in this election</button><br>
