@@ -1,5 +1,6 @@
 <br>
 
+<div id="submit-button">
 <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
 
   <div formGroupName="details">
@@ -64,24 +65,4 @@
   <button type="submit" [disabled]="!profileForm.valid" (click)="add_election()" class="btn btn-primary">Submit</button>
 
 </form>
-
-
-<!--
-<p>
-  Form Status: {{ profileForm.status }}
-</p>
-
-<p>
-  Value: {{ profileForm.value }}
-</p>
-
-
-<label>
-  Name:
-  <input type="text" [formControl]="name">
-
-  </label>
-
-  <p>
-    <button (click)="updateName()">Update Name</button>
-  </p>-->
+</div>

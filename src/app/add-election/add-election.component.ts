@@ -103,5 +103,7 @@ export class AddElectionComponent implements OnInit {
           votenr : 0
         });
       }
+      window.location.reload();
+
     }
 }
