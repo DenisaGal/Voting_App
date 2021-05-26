@@ -132,14 +132,14 @@ app.get('/increment',(req,res) =>{
       }
     }))
   
-  var addTotal= db.collection('Elections/').get() // incr total votes nr of certain election
-  .then((arr) => arr.forEach( document => {
+  // var addTotal= db.collection('Elections/').get() // incr total votes nr of certain election
+  // .then((arr) => arr.forEach( document => {
       
-      if(document.id === election) // election
-        up = {nrofvotes:document.data().nrofvotes + 1}
-        admin.firestore().collection('Elections/').doc(election).update(up)
-      }
-  ));
+  //     if(document.id === election) // election
+  //       var up = {nrofvotes:document.data().nrofvotes + 1}
+  //       admin.firestore().collection('Elections/').doc(election).update(up)
+  //     }
+  // ));
 
   res.send()
 

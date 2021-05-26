@@ -25,11 +25,12 @@ export class ElectionResultsComponent implements OnInit {
   candidates_from_firestore: Observable<any[]>;
   // rezultate : Observable<any[]>;
   datapoints : { y: number, label: string }[]=[];
-  nrofvotes : number = 0;
+  nrofvotes : number ;
   
 
 
   constructor(private route: ActivatedRoute, private db: AngularFirestore, private router: Router) {
+    this.nrofvotes = 0
     const routeParams = this.route.snapshot.paramMap;
     	  const electionIdFromRoute = String(routeParams.get('electionId'));
     	  this.electionId = electionIdFromRoute;
@@ -45,7 +46,7 @@ export class ElectionResultsComponent implements OnInit {
     																					this.electionStart_Time = data[i].Start_Time;
     																					this.electionEnd_Date = data[i].End_Date;
     																					this.electionEnd_Time = data[i].End_Time;
-                                              this.nrofvotes=data[i].nrofvotes;
+                                             
                                               
     	                                 			}
                                      			}
@@ -57,6 +58,7 @@ export class ElectionResultsComponent implements OnInit {
           data => {
             let n =data.length;
             for(let i = 0; i < n; i++){
+              this.nrofvotes += data[i].votenr;
               this.datapoints.push({y:data[i].votenr,label:data[i].id});
             }
 

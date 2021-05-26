@@ -5,11 +5,11 @@
 }
 
 
-#home_button{
+#home_button{  
   height: 100px;
   width: 200px;
 	border: none;
-	background-image: url("./votelogo2.png");
+	background-image: url("votelogo2.png");
 	background-size: cover;
 	margin-right: 20px;
 }
