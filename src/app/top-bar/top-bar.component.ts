@@ -19,23 +19,28 @@ export class TopBarComponent implements OnInit {
 
 
   constructor( private ref: ApplicationRef, private auth: AngularFireAuth, public router: Router, private db: AngularFirestore) {
+    
     let var1 = this.ref
           this.auth.onAuthStateChanged(function(user) {
             if (user) {
               UserProfileComponent.emailAddress = user.email!;
-              TopBarComponent.isSignedIn = true
-              var1.tick()
+              TopBarComponent.isSignedIn = true;
+              
+              var1.tick();
+              
               // User is signed in.
             } else {
               TopBarComponent.isSignedIn = false
-              var1.tick()
-
+              var1.tick();
+              
               // No user is signed in.
             }
           });
+         
   }
 
   ngOnInit(): void {
+  
   this.db.collection<any>("Users").valueChanges()
                                         .subscribe( data=>
                                            {
@@ -46,6 +51,7 @@ export class TopBarComponent implements OnInit {
                                                    if(data[i].Admin == true){
                                                       (<HTMLInputElement>document.getElementById("admin-button")).style.display = "inline";
                                                    }
+                                                   
                                                  }
                                                }
                                            });
